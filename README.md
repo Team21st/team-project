@@ -1,4 +1,6 @@
 # team-project
+## 
+FuZhou University MIEC Team Project
 
 ## Project setup
 ```
