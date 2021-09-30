@@ -8,7 +8,10 @@ import 'element-ui/lib/theme-chalk/index.css'
 import animate from 'animate.css'
 
 import config from '@/config'
+
 Vue.prototype.$config = config
+
+import './index.less'
 
 Vue.use(ElementUI)
 Vue.use(animate)
