@@ -4,7 +4,7 @@
 
 FuZhou University MIEC Team Project
 
-Yihui Shi, Yichen Hu
+Yihui Shi, Yichen Hu to work
 
 ## Technology stack
 
