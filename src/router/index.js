@@ -7,18 +7,25 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Home.vue')
+    component: () => import('../views/Home.vue')
   },
   {
     path: '/login',
     name: 'Login',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue')
+    component: () => import('../views/Login.vue')
   },
   {
     path: '/admin',
-    name: 'Admin',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Admin.vue')
-  }
+    component: () => import('../components/Home.vue'),
+    meta: {title: 'Admin'},
+    children: [
+      // {
+      //   path: 'accounts',
+      //   component: () => import('../pages/accounts'),
+      //   meta: { title: '账号管理' }
+      // },
+    ]
+  },
 ]
 
 const router = new VueRouter({
