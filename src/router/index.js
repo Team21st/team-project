@@ -13,19 +13,13 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: () => import('../views/Login.vue')
-  },
-  {
-    path: '/admin',
-    component: () => import('../components/Home.vue'),
-    meta: {title: 'Admin'},
-    children: [
-      // {
-      //   path: 'accounts',
-      //   component: () => import('../pages/accounts'),
-      //   meta: { title: '账号管理' }
-      // },
-    ]
-  },
+  }
+  // {
+  //   path: '/admin',
+  //   component: () => import('../components/Home.vue'),
+  //   meta: {title: 'Admin'},
+  //   children: [{}]
+  // },
 ]
 
 const router = new VueRouter({
