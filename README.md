@@ -1,10 +1,12 @@
 # team-project
 
-##  
-
 FuZhou University MIEC Team Project
 
 Yihui Shi, Yichen Hu to work
+
+##  Intro
+
+
 
 ## Technology stack
 

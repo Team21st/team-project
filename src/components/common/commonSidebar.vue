@@ -1,14 +1,14 @@
 <template>
   <div class="sidebar">
     <el-menu
-        :default-active="onRoute"
-        class="sidebar-el-menu"
-        :collapse="collapse"
-        background-color="#fff"
-        text-color="#333"
-        active-text-color="#6190e8"
-        router
-        unique-opened
+      :default-active="onRoute"
+      class="sidebar-el-menu"
+      :collapse="collapse"
+      background-color="#fff"
+      text-color="#333"
+      active-text-color="#6190e8"
+      router
+      unique-opened
     >
       <template v-for="item in items">
         <template v-if="item.subs">
@@ -20,25 +20,25 @@
             </template>
             <template v-for="subItem in item.subs">
               <el-submenu
-                  v-if="subItem.subs"
-                  :index="subItem.index"
-                  :key="subItem.index"
-                  class="title"
+                v-if="subItem.subs"
+                :index="subItem.index"
+                :key="subItem.index"
+                class="title"
               >
                 <template slot="title" class="title">{{ subItem.title }}</template>
                 <el-menu-item
-                    v-for="(threeItem,i) in subItem.subs"
-                    :key="i"
-                    :index="threeItem.index"
-                    class="title"
+                  v-for="(threeItem,i) in subItem.subs"
+                  :key="i"
+                  :index="threeItem.index"
+                  class="title"
                 >{{ threeItem.title }}
                 </el-menu-item>
               </el-submenu>
               <el-menu-item
-                  v-else
-                  :index="subItem.index"
-                  :key="subItem.index"
-                  class="title"
+                v-else
+                :index="subItem.index"
+                :key="subItem.index"
+                class="title"
               >{{ subItem.title }}
               </el-menu-item>
             </template>
@@ -69,32 +69,32 @@ export default {
         {
           icon: "el-icon-location-outline",
           index: "dashboard",
-          title: "系统首页"
+          title: "Overview"
         },
         {
           icon: "el-icon-user",
           index: "accounts",
-          title: "账号管理"
+          title: "Account Management"
         },
         {
           icon: "el-icon-shopping-cart-full",
-          index: "commAdmin",
-          title: "商品管理",
+          index: "commodity",
+          title: "Commodity Management",
         },
         {
           icon: "el-icon-edit-outline",
           index: "comment",
-          title: "被举报评论",
+          title: "Comment Moderation",
         },
         {
           icon: "el-icon-tickets",
           index: "identify",
-          title: "认证审核",
+          title: "Certification Audit",
         },
         {
           icon: "el-icon-bank-card",
           index: "money",
-          title: "提现审核",
+          title: "Transaction Audit",
         },
       ],
       userBean: ''
@@ -117,7 +117,7 @@ export default {
   computed: {
     // 路由配置
     onRoute() {
-      return this.$route.path.replace("/", "");
+      return this.$route.path.replace("/admin", "");
     },
   },
 };

@@ -11,7 +11,7 @@ import config from '@/config'
 
 Vue.prototype.$config = config
 
-import './index.less'
+import './assets/CSS/index.less'
 
 Vue.use(ElementUI)
 Vue.use(animate)

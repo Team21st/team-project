@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div class="logo">转小二 · 后台</div>
+    <div class="logo">Background Management System</div>
     <div class="collapse-btn" @click="handleCollapseChange">
       <i v-if="!collapse" class="el-icon-s-fold"></i>
       <i v-else class="el-icon-s-unfold"></i>
