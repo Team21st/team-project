@@ -7,21 +7,21 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('../views/Home.vue')
+    component: () => import('@/views/Home.vue')
   },
   {
     path: '/login',
     name: 'Login',
-    component: () => import('../views/Login.vue')
+    component: () => import('@/views/Login.vue')
   },
   {
     path: '/admin',
-    component: () => import('../components/Home.vue'),
+    component: () => import('@/components/Home.vue'),
     meta: {title: 'Admin'},
     children: [
       {
         path: 'accounts',
-        component: () => import('../views/Admin/Account'),
+        component: () => import('@/views/Admin/Account'),
         meta: {title: '账号管理'}
       },
     ]
@@ -31,5 +31,9 @@ const routes = [
 const router = new VueRouter({
   routes
 })
+
+// router.beforeEach((to, from, next) => {
+//   // 路由守卫
+// })
 
 export default router

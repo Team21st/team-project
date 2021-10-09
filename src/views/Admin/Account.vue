@@ -57,12 +57,12 @@ export default {
     initData() {
       this.getUserList(1)
     },
-    getUserList(val) {
-    },
-    banUser(userNo) {
-    },
-    unBanUser(userNo) {
-    },
+    // getUserList(val) {
+    // },
+    // banUser(userNo) {
+    // },
+    // unBanUser(userNo) {
+    // },
     rTime: function (date) {
       var date1 = new Date(date).toJSON();
       return new Date(+new Date(date1) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
