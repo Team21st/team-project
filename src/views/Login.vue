@@ -60,6 +60,14 @@ export default {
       loginForm: {},
       registerForm: {},
     }
+  },
+  methods:{
+    login(){
+
+    },
+    register(){
+
+    }
   }
 }
 </script>
