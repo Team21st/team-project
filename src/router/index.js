@@ -20,10 +20,30 @@ const routes = [
     meta: {title: 'Admin'},
     children: [
       {
+        path: 'dashboard',
+        component: () => import('@/views/Admin/Dashboard'),
+        meta: {title: 'Dashboard'}
+      },
+      {
         path: 'accounts',
         component: () => import('@/views/Admin/Account'),
-        meta: {title: '账号管理'}
+        meta: {title: 'Accounts'}
       },
+      {
+        path: 'comment',
+        component: () => import('@/views/Admin/Comment'),
+        meta: {title: 'Comment'}
+      },
+      {
+        path: 'commodity',
+        component: () => import('@/views/Admin/Commodity'),
+        meta: {title: 'Commodity'}
+      },
+      {
+        path: 'money',
+        component: () => import('@/views/Admin/MoneyAdmin'),
+        meta: {title: 'MoneyAdmin'}
+      }
     ]
   },
 ]

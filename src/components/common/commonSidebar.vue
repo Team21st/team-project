@@ -87,11 +87,6 @@ export default {
           title: "Comment Moderation",
         },
         {
-          icon: "el-icon-tickets",
-          index: "identify",
-          title: "Certification Audit",
-        },
-        {
           icon: "el-icon-bank-card",
           index: "money",
           title: "Transaction Audit",
