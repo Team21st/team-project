@@ -1,5 +1,8 @@
 <template>
-<div></div>
+  <div id="search">
+    sss
+    sss
+  </div>
 </template>
 
 <script>
@@ -8,6 +11,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+#search {
 
+}
 </style>

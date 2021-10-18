@@ -50,47 +50,13 @@ export default {
     initData() {
       this.getUserList(1)
     },
-    getUserList(val) {
-      Server.userList({
-        current: val,
-        size: 15
-      }, this.token).then(res => {
-        if (res.code === 1) {
-          this.userListPages = res.obj.pages
-          this.userList = [
-            {
-              userBean: {
-                userName: '工藤新一',
-                userEmail: '1316s556@qq.com',
-                userNo: '123123123',
-                userRealName: '玛丽拉姆',
-                cardName: '玛丽拉姆',
-                cardNo: '6462564851622',
-                money: 1000
-              }
-            },
-            {
-              userBean: {
-                userName: '水水大',
-                userEmail: '13112356@qq.com',
-                userNo: '123123123',
-                userRealName: '马冬梅',
-                cardName: '马冬梅',
-                cardNo: '25645612564',
-                money: 200
-              }
-            }
-          ]
-          for (let i = 0; i < this.userList.length; i++) {
-            this.userList[i].userBean.money = this.userList[i].userBean.money.toFixed(2);
-          }
-        }
-      })
+    getUserList() {
+
     },
-    banUser(userNo) {
+    banUser() {
     },
-    unBanUser(userNo) {
-    },
+    unBanUser() {
+    }
   }
 }
 </script>

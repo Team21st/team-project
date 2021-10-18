@@ -7,12 +7,29 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/Market/Home.vue'),
+    component: () => import('@/views/Market/Market.vue'),
     meta: {title: 'Home'},
     children: [
       {
-
-      }
+        path: 'home',
+        component: () => import('@/views/Market/Home'),
+        meta: {title: 'Home'}
+      },
+      {
+        path: 'commodity',
+        component: () => import('@/views/Market/Commodity'),
+        meta: {title: 'Home'}
+      },
+      {
+        path: 'search',
+        component: () => import('@/views/Market/Search'),
+        meta: {title: 'Home'}
+      },
+      {
+        path: 'user',
+        component: () => import('@/views/Market/User'),
+        meta: {title: 'Home'}
+      },
     ]
   },
   {
