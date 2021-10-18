@@ -1,3 +1,10 @@
-/**
- * Created by Yihui_Shi on 2021/10/9 13:56
- */
+import request from '@/utils/request'
+
+export function changeUserPassword(params) {
+  return request({
+    requestServer: 'StoreService',
+    url: '/user/changeUserPassword',
+    method: 'post',
+    params: params
+  })
+}
