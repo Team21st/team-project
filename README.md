@@ -2,7 +2,9 @@
 
 FuZhou University MIEC Team Project
 
-Yihui Shi, Yichen Hu to work
+By Yihui Shi, Yichen Hu
+
+You can get a live preview of our project through our Serverless deployment web page.
 
 ##  Intro
 
