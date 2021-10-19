@@ -6,7 +6,7 @@ export function changeUserPassword(params) {
     requestServer: 'StoreService',
     url: '/user/changeUserPassword',
     method: 'post',
-    params: params
+    data: params
   })
 }
 
@@ -15,7 +15,7 @@ export function userLogin(params) {
     requestServer: 'StoreService',
     url: '/user/userLogin',
     method: 'post',
-    params: params
+    data: params
   })
 }
 
@@ -24,6 +24,6 @@ export function userRegister(params) {
     requestServer: 'StoreService',
     url: '/user/userRegister',
     method: 'post',
-    params: params
+    data: params
   })
 }

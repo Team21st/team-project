@@ -4,18 +4,18 @@
     <div class="submit">
       <div class="submit-info" v-if="isLogin">
         <h1>Log in</h1>
-        <el-form>
+        <el-form :model="loginForm" :rules="rules1" ref="loginForm">
           <el-form-item label="Email Address">
             <el-input placeholder="Input your email" v-model="loginForm.userEmail"></el-input>
           </el-form-item>
-          <el-form-item label="Password">
+          <el-form-item label="userPassword">
             <el-input placeholder="Input your password" v-model="loginForm.userPassword"></el-input>
           </el-form-item>
         </el-form>
         <div style="text-align: right;margin-top: 30px">
           <a href="#">forget password</a>
         </div>
-        <el-button style="width: 100%;margin-top: 10px" type="primary">
+        <el-button style="width: 100%;margin-top: 10px" type="primary" @click="login">
           Log in
         </el-button>
         <el-button style="width: 100%;margin:10px 0" @click="isLogin=false">
@@ -27,7 +27,7 @@
         <el-form :model="registerForm" :rules="rules2" ref="registerForm">
           <el-form-item label="Email Address" prop="userEmail">
             <el-input placeholder="Input your email" v-model="registerForm.userEmail">
-              <el-button slot="append" @click="sendEmail">Send</el-button>
+              <el-button slot="append" @click="sendEmail" :disabled="sentEmailAble">Send</el-button>
             </el-input>
           </el-form-item>
           <el-form-item label="Security Code" prop="code">
@@ -54,7 +54,7 @@
     <div class="img">
       <div style="display: flex;justify-content: center;flex-direction: column;">
         <el-image
-          style="height:500px;line-height: 500px"
+          style="height:450px;line-height: 450px"
           :src="require('../assets/图书义卖.svg')" alt="">
         </el-image>
         <el-image
@@ -73,11 +73,6 @@ import {sendEmail} from "@/api/message";
 export default {
   name: "Login",
   data() {
-    var validatePass = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请输入密码'));
-      }
-    };
     return {
       isLogin: false,
       loginForm: {
@@ -91,10 +86,17 @@ export default {
         userName: ''
       },
       sentEmailAble: false,
-      rules1: {},
+      rules1: {
+        userEmail: [
+          {required: true, type: 'email', trigger: 'blur'}
+        ],
+        userPassword: [
+          {required: true, message: 'Please input your password', trigger: 'blur'}
+        ],
+      },
       rules2: {
         userPassword: [
-          {required: true, validator: validatePass, trigger: 'blur'}
+          {required: true, message: 'Please input your password', trigger: 'blur'}
         ],
         userEmail: [
           {required: true, type: 'email', trigger: 'blur'}
@@ -111,19 +113,28 @@ export default {
   },
   methods: {
     login() {
-      userLogin({...this.loginForm}).then((res) => {
-        console.log(res)
-      })
-    },
-    register() {
-      this.$refs['registerForm'].validate((valid) => {
+      this.$refs['loginForm'].validate((valid) => {
         if (valid) {
-          userRegister({...this.registerForm}).then((res) => {
+          userLogin({...this.loginForm}).then((res) => {
             this.$message.success(res.head.respMsg)
             console.log(res)
           })
         } else {
-          return false;
+          return false
+        }
+      })
+    },
+    register() {
+      this.$refs['registerForm'].validate((valid) => {
+        console.log(valid)
+        if (valid) {
+          userRegister({...this.registerForm}).then((res) => {
+            this.$message.success(res.head.respMsg)
+            this.isLogin = true
+            console.log(res)
+          })
+        } else {
+          return false
         }
       })
     },
@@ -131,7 +142,10 @@ export default {
       sendEmail({userEmail: this.registerForm.userEmail}).then((res) => {
         console.log(res)
         this.$message.success(res.head.respMsg)
-
+        this.sentEmailAble = true
+        setTimeout(() => {
+          this.sentEmailAble = false
+        }, 1200)
       })
     }
   }
@@ -152,7 +166,7 @@ export default {
       margin: 15vh auto;
 
       h1 {
-        margin-bottom: 40px;
+        margin-bottom: 20px;
       }
 
       a {

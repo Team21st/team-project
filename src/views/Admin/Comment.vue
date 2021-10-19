@@ -48,51 +48,11 @@ export default {
     initData() {
       this.getUserList(1)
     },
-    getUserList(val) {
-      Server.userList({
-        current: val,
-        size: 15
-      }, this.token).then(res => {
-        if (res.code === 1) {
-          this.userListPages = res.obj.pages
-          this.userList = [
-            {
-              userBean: {
-                userName: '工藤新一',
-                userEmail: '1316s556@qq.com',
-                userNo: '123123123',
-                comment:'公使馆升格速度快决赛当晚送的显卡撒啊啊啊啊啊啊啊啊',
-                reason:'垃圾评论'
-              }
-            },
-            {
-              userBean: {
-                userName: '水水大',
-                userEmail: '13112356@qq.com',
-                userNo: '123123123',
-                comment:'这个商品真的很垃圾，！@￥#%￥%&……%……&',
-                reason:'脏话'
-              }
-            },
-            {
-              userBean: {
-                userName: 'SSR',
-                userEmail: '13112356@qq.com',
-                userNo: '123123123',
-                comment:'你好，+QQ1912378819',
-                reason:'广告'
-              }
-            }
-          ]
-          for (let i = 0; i < this.userList.length; i++) {
-            this.userList[i].userBean.money = this.userList[i].userBean.money.toFixed(2);
-          }
-        }
-      })
+    getUserList() {
     },
-    banUser(userNo) {
+    banUser() {
     },
-    unBanUser(userNo) {
+    unBanUser() {
     },
   }
 }
