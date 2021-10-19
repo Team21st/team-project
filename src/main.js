@@ -4,12 +4,14 @@ import router from './router'
 import store from './store'
 
 import ElementUI from 'element-ui'
+import {Message} from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import animate from 'animate.css'
 
 import config from '@/config'
 
 Vue.prototype.$config = config
+Vue.prototype.$message = Message
 
 import './assets/CSS/index.less'
 import './assets/CSS/theme/index.css'

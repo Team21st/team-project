@@ -6,10 +6,10 @@
         <h1>Log in</h1>
         <el-form>
           <el-form-item label="Email Address">
-            <el-input placeholder="Input your email"></el-input>
+            <el-input placeholder="Input your email" v-model="loginForm.userEmail"></el-input>
           </el-form-item>
           <el-form-item label="Password">
-            <el-input placeholder="Input your password"></el-input>
+            <el-input placeholder="Input your password" v-model="loginForm.userPassword"></el-input>
           </el-form-item>
         </el-form>
         <div style="text-align: right;margin-top: 30px">
@@ -24,24 +24,25 @@
       </div>
       <div class="submit-info" v-else>
         <h1>Sign up</h1>
-        <el-form>
-          <el-form-item label="Email Address">
-            <el-input placeholder="Input your email">
-              <el-button slot="append">Send Code</el-button>
+        <el-form :model="registerForm" :rules="rules2" ref="registerForm">
+          <el-form-item label="Email Address" prop="userEmail">
+            <el-input placeholder="Input your email" v-model="registerForm.userEmail">
+              <el-button slot="append" @click="sendEmail">Send</el-button>
             </el-input>
           </el-form-item>
-          <el-form-item label="Security Code">
-            <el-input placeholder="Input your security code"></el-input>
+          <el-form-item label="Security Code" prop="code">
+            <el-input placeholder="Input your security code" v-model="registerForm.code"></el-input>
           </el-form-item>
-          <el-form-item label="Name">
-            <el-input placeholder="Input your password"></el-input>
+          <el-form-item label="userName" prop="userName">
+            <el-input placeholder="Input your userName" v-model="registerForm.userName"></el-input>
           </el-form-item>
-          <el-form-item label="Password">
-            <el-input placeholder="Input your password"></el-input>
+          <el-form-item label="Password" prop="userPassword">
+            <el-input placeholder="Input your userPassword" type="password"
+                      v-model="registerForm.userPassword"></el-input>
           </el-form-item>
         </el-form>
         <div style="margin-top: 30px">
-          <el-button style="width: 100%;margin-top: 10px" type="primary">
+          <el-button style="width: 100%;margin-top: 10px" type="primary" @click="register">
             Sign up
           </el-button>
           <el-button style="width: 100%;margin:10px 0" @click="isLogin=true">
@@ -67,10 +68,16 @@
 
 <script>
 import {userLogin, userRegister} from "@/api/user"
+import {sendEmail} from "@/api/message";
 
 export default {
   name: "Login",
   data() {
+    var validatePass = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入密码'));
+      }
+    };
     return {
       isLogin: false,
       loginForm: {
@@ -83,16 +90,49 @@ export default {
         userEmail: '',
         userName: ''
       },
+      sentEmailAble: false,
+      rules1: {},
+      rules2: {
+        userPassword: [
+          {required: true, validator: validatePass, trigger: 'blur'}
+        ],
+        userEmail: [
+          {required: true, type: 'email', trigger: 'blur'}
+        ],
+        code: [
+          {required: true, message: 'Please enter your security code', trigger: 'blur'}
+        ],
+        userName: [
+          {required: true, message: 'Please enter your userName', trigger: 'blur'},
+          {min: 4, max: 10, message: 'The length is 4 to 10 characters', trigger: 'blur'}
+        ]
+      }
     }
   },
   methods: {
     login() {
-      userLogin({}).then((res) => {
+      userLogin({...this.loginForm}).then((res) => {
         console.log(res)
       })
     },
     register() {
-      userRegister({})
+      this.$refs['registerForm'].validate((valid) => {
+        if (valid) {
+          userRegister({...this.registerForm}).then((res) => {
+            this.$message.success(res.head.respMsg)
+            console.log(res)
+          })
+        } else {
+          return false;
+        }
+      })
+    },
+    sendEmail() {
+      sendEmail({userEmail: this.registerForm.userEmail}).then((res) => {
+        console.log(res)
+        this.$message.success(res.head.respMsg)
+
+      })
     }
   }
 }
@@ -109,7 +149,7 @@ export default {
 
     .submit-info {
       width: 60%;
-      margin: 20vh auto;
+      margin: 15vh auto;
 
       h1 {
         margin-bottom: 40px;
@@ -120,7 +160,7 @@ export default {
       }
 
       .el-form-item {
-        margin: 0;
+        margin: 10px 0;
       }
     }
   }

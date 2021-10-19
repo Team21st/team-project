@@ -5,6 +5,6 @@ export function sendEmail(params) {
     requestServer: 'StoreService',
     url: '/message/sendEmail',
     method: 'get',
-    query: params,
+    params: params,
   })
 }

@@ -1,9 +1,10 @@
 import axios from 'axios'
-import {MessageBox, Message} from 'element-ui'
+import {Message} from 'element-ui'
 import store from '@/store'
 
 // create an axios instance
 const service = axios.create({
+  // eslint-disable-next-line no-undef
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000 // request timeout
@@ -14,7 +15,9 @@ service.interceptors.request.use(
   config => {
     if (config.requestServer) {
       config.requestServer === 'StoreService'
+        // eslint-disable-next-line no-undef
         ? config.baseURL = process.env.VUE_APP_BASE_API
+        // eslint-disable-next-line no-undef
         : config.baseURL = process.env.VUE_APP_BASE_API_PY
     }
     if (store.getters.token) {
@@ -40,6 +43,7 @@ service.interceptors.response.use(
       Message.error(response.data.respMsg)
       return Promise.reject(response.data.respMsg)
     }
+    return response.data
   },
   error => {
     console.log('err' + error) // for debug
