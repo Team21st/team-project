@@ -52,6 +52,8 @@
 </template>
 
 <script>
+// import {userLogin, userRegister} from "@/api/user"
+
 export default {
   name: "Login",
   data() {
@@ -61,11 +63,11 @@ export default {
       registerForm: {},
     }
   },
-  methods:{
-    login(){
+  methods: {
+    login() {
 
     },
-    register(){
+    register() {
 
     }
   }
