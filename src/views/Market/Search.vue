@@ -28,18 +28,19 @@
         sss
       </el-col>
     </el-row>
-    <el-row>
-      <div class="commodity-list">
-        <div>
-          sss
-        </div>
-      </div>
+    <el-row style="text-align: center;background-color: #f2efe8;">
+      <commonList></commonList>
     </el-row>
   </div>
 </template>
 
 <script>
+import commonList from "@/components/Search/commonList";
+
 export default {
+  components: {
+    commonList
+  },
   name: "Search",
   data() {
     return {

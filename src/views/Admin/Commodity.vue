@@ -5,28 +5,28 @@
       <el-table-column type="expand">
         <template slot-scope="props">
           <el-form label-position="left" inline class="demo-table-expand">
-            <el-form-item label="商品 ID">
+            <el-form-item label="Commodity ID">
               <span>{{ props.row.commodity.commNo }}</span>
             </el-form-item>
-            <el-form-item label="商品类型">
+            <el-form-item label="Commodity type">
               <span>{{ props.row.commodity.commTag }}</span>
             </el-form-item>
-            <el-form-item label="售价">
+            <el-form-item label="Price">
               <span>{{ props.row.commodity.commPrice }}</span>
             </el-form-item>
-            <el-form-item label="库存">
+            <el-form-item label="Inventory">
               <span>{{ props.row.commodity.commStock }}</span>
             </el-form-item>
-            <el-form-item label="发布时间">
+            <el-form-item label="Release time">
               <span>{{ props.row.commodity.createTime }}</span>
             </el-form-item>
-            <el-form-item label="发布人ID">
+            <el-form-item label="Releaser ID">
               <span>{{ props.row.commodity.createUser }}</span>
             </el-form-item>
-            <el-form-item label="审核人">
+            <el-form-item label="Reviewer">
               <span>{{ props.row.commodity.auditor }}</span>
             </el-form-item>
-            <el-form-item label="审核时间">
+            <el-form-item label="Audit time">
               <span>{{ props.row.commodity.auditTime }}</span>
             </el-form-item>
           </el-form>
@@ -105,26 +105,15 @@ export default {
     initData() {
       this.getCommList(1)
     },
-    getCommList(val) {
-      //  商品列表
-      Server.commList({
-        auditStatus: this.auditStatus,
-        current: val,
-        size: 10
-      }, this.token).then(res => {
-        if (res.code === 1) {
-          this.commList = res.obj.obj
-          this.commListPages = res.obj.pages
-        }
-      })
+    getCommList() {
     },
     rTime: function (date) {
       var date1 = new Date(date).toJSON();
       return new Date(+new Date(date1) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
     },
-    allowCommo(commNo) {
+    allowCommo() {
     },
-    refuseCommo(commNo) {
+    refuseCommo() {
     }
   }
 }

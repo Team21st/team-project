@@ -5,10 +5,10 @@
       <div class="submit-info" v-if="isLogin">
         <h1>Log in</h1>
         <el-form :model="loginForm" :rules="rules1" ref="loginForm">
-          <el-form-item label="Email Address">
+          <el-form-item label="Email Address" prop="userEmail">
             <el-input placeholder="Input your email" v-model="loginForm.userEmail"></el-input>
           </el-form-item>
-          <el-form-item label="userPassword">
+          <el-form-item label="Password" prop="userPassword">
             <el-input placeholder="Input your password" v-model="loginForm.userPassword"></el-input>
           </el-form-item>
         </el-form>
@@ -74,7 +74,7 @@ export default {
   name: "Login",
   data() {
     return {
-      isLogin: false,
+      isLogin: true,
       loginForm: {
         userEmail: '',
         userPassword: ''
