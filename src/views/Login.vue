@@ -51,7 +51,7 @@
         </div>
       </div>
     </div>
-    <div class="img">
+    <div class="img hidden-md-and-down">
       <div style="display: flex;justify-content: center;flex-direction: column;">
         <el-image
           style="height:450px;line-height: 450px"
@@ -139,13 +139,19 @@ export default {
       })
     },
     sendEmail() {
-      sendEmail({userEmail: this.registerForm.userEmail}).then((res) => {
-        console.log(res)
-        this.$message.success(res.head.respMsg)
-        this.sentEmailAble = true
-        setTimeout(() => {
-          this.sentEmailAble = false
-        }, 1200)
+      this.$refs['registerForm'].validateField(['userEmail'], valid => {
+        if (valid == null || valid === '') {
+          sendEmail({userEmail: this.registerForm.userEmail}).then((res) => {
+            console.log(res)
+            this.$message.success(res.head.respMsg)
+            this.sentEmailAble = true
+            setTimeout(() => {
+              this.sentEmailAble = false
+            }, 1200000)
+          })
+        } else {
+          return false
+        }
       })
     }
   }
@@ -164,6 +170,7 @@ export default {
     .submit-info {
       width: 60%;
       margin: 15vh auto;
+
 
       h1 {
         margin-bottom: 20px;
