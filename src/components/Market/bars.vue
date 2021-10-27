@@ -7,16 +7,27 @@
        :key="index">
       {{ item.label }}
     </a>
-    <div style="line-height: 50px;float: right;margin: 0 10px;display: flex">
+    <div class="header-right">
       <el-avatar :size="40" style="display: block;margin-top: 5px">
         User
       </el-avatar>
       <a href="#" @click="pathTo('/login')" style="line-height: 50px;display: block">Login/Register</a>
+      <el-dropdown class="user-name" trigger="click" @command="handleCommand" v-if="userName">
+          <span class="el-dropdown-link">
+            {{ userName }}
+            <i class="el-icon-caret-bottom"></i>
+          </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item divided command="logout">Log Out</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
     </div>
   </div>
 </template>
 
 <script>
+import {mapGetters} from "vuex/dist/vuex.mjs";
+
 export default {
   name: "bars",
   data() {
@@ -44,7 +55,16 @@ export default {
   methods: {
     pathTo(path) {
       this.$router.push(path)
-    }
+    },
+    // 下拉菜单选择
+    handleCommand(commond) {
+      if (commond === "logout") {
+        this.$router.push("/login");
+      }
+    },
+  },
+  computed: {
+    ...mapGetters(['userInfo', 'userName'])
   }
 }
 </script>
@@ -59,6 +79,17 @@ export default {
     color: white;
     text-decoration: none;
     line-height: 50px;
+  }
+
+  .header-right {
+    line-height: 50px;
+    float: right;
+    margin: 0 20px;
+    display: flex;
+
+    a:hover {
+      text-decoration: 1px white;
+    }
   }
 }
 </style>
