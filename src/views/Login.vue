@@ -1,6 +1,13 @@
 <template>
   <!--  注册与登入同页面-->
   <div id="login">
+    <el-button type="primary"
+               @click="back"
+               size="mini"
+               style="position: fixed;top: 10px;left: 10px">
+      <i class="el-icon-back"></i>
+      Back
+    </el-button>
     <div class="submit">
       <div class="submit-info" v-if="isLogin">
         <h1>Log in</h1>
@@ -9,7 +16,7 @@
             <el-input placeholder="Input your email" v-model="loginForm.userEmail"></el-input>
           </el-form-item>
           <el-form-item label="Password" prop="userPassword">
-            <el-input placeholder="Input your password" v-model="loginForm.userPassword"></el-input>
+            <el-input placeholder="Input your password" v-model="loginForm.userPassword" type="password"></el-input>
           </el-form-item>
         </el-form>
         <div style="text-align: right;margin-top: 30px">
@@ -69,6 +76,7 @@
 <script>
 import {userLogin, userRegister} from "@/api/user"
 import {sendEmail} from "@/api/message";
+import {mapActions, mapGetters} from "vuex/dist/vuex.mjs";
 
 export default {
   name: "Login",
@@ -112,12 +120,16 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['Login']),
     login() {
       this.$refs['loginForm'].validate((valid) => {
         if (valid) {
-          userLogin({...this.loginForm}).then((res) => {
-            this.$message.success(res.head.respMsg)
-            console.log(res)
+          this.Login(this.loginForm).then(() => {
+            if (this.userInfo.userRoot === 0) {
+              this.$router.push('/')
+            } else {
+              this.$router.push('/admin/dashboard')
+            }
           })
         } else {
           return false
@@ -153,7 +165,13 @@ export default {
           return false
         }
       })
+    },
+    back() {
+      this.$router.push('/')
     }
+  },
+  computed: {
+    ...mapGetters(['token', 'userInfo'])
   }
 }
 </script>

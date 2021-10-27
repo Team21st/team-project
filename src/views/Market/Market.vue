@@ -1,14 +1,21 @@
 <template>
   <div id="market">
-<!--    商城顶级路由-->
-    顶部菜单栏设计
+    <Bars></Bars>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import Bars from "@/components/Market/bars";
+
 export default {
-  name: "HomePage"
+  name: "HomePage",
+  data() {
+    return {}
+  },
+  components: {
+    Bars
+  }
 }
 </script>
 
