@@ -7,9 +7,12 @@
        :key="index">
       {{ item.label }}
     </a>
-    <el-avatar size="40">
-
-    </el-avatar>
+    <div style="line-height: 50px;float: right;margin: 0 10px;display: flex">
+      <el-avatar :size="40" style="display: block;margin-top: 5px">
+        User
+      </el-avatar>
+      <a href="#" @click="pathTo('/login')" style="line-height: 50px;display: block">Login/Register</a>
+    </div>
   </div>
 </template>
 
