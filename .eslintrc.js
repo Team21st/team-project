@@ -3,7 +3,6 @@ module.exports = {
     "browser": true,
   },
   "extends": [
-    "eslint:recommended",
     "plugin:vue/essential"
   ],
   "parserOptions": {
@@ -14,5 +13,7 @@ module.exports = {
   "plugins": [
     "vue"
   ],
-  "rules": {},
+  "rules": {
+
+  },
 };
