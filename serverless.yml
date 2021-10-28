@@ -10,5 +10,5 @@ inputs:
     error: index.html
   region: ap-guangzhou
   bucketName: my-bucket-d89je3f
-  protocol: https
+  protocol: http
   isAutoCiDeploy: false

@@ -57,17 +57,20 @@ export default {
     this.getUser()
   },
   methods: {
-    ...mapActions(['getUserInfo']),
+    ...mapActions(['getUserInfo', 'Logout']),
     pathTo(path) {
       this.$router.push(path)
     },
     // 下拉菜单选择
     handleCommand(commond) {
       if (commond === "logout") {
+        this.Logout().then(() => {
+          this.$message.error('Log Out')
+        })
         this.$router.push("/login");
       }
     },
-    getUser(){
+    getUser() {
       this.getUserInfo()
     }
   },

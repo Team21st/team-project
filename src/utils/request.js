@@ -1,7 +1,8 @@
 import axios from 'axios'
 import {Message} from 'element-ui'
-import store from '@/store'
 import storage from 'store'
+import router from '@/router'
+import getters from "@/store/getters";
 
 // create an axios instance
 const service = axios.create({
@@ -31,7 +32,6 @@ service.interceptors.request.use(
   },
   error => {
     // do something with request error
-    console.log(error) // for debug
     return Promise.reject(error)
   }
 )
@@ -47,13 +47,21 @@ service.interceptors.response.use(
     return response.data
   },
   error => {
-    console.log('err' + error) // for debug
-    Message({
-      message: error.message,
-      type: 'error',
-      duration: 5 * 1000
-    })
-    return Promise.reject(error)
+    if (error.toString().indexOf('401')) {
+      Message({
+        message: 'token has expired',
+        type: 'error',
+        duration: 5 * 1000
+      })
+    } else {
+      console.log('err' + error) // for debug
+      Message({
+        message: error.message,
+        type: 'error',
+        duration: 5 * 1000
+      })
+      return Promise.reject(error)
+    }
   }
 )
 
