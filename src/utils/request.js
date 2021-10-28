@@ -1,6 +1,7 @@
 import axios from 'axios'
 import {Message} from 'element-ui'
 import store from '@/store'
+import storage from 'store'
 
 // create an axios instance
 const service = axios.create({
@@ -20,11 +21,11 @@ service.interceptors.request.use(
         // eslint-disable-next-line no-undef
         : config.baseURL = process.env.VUE_APP_BASE_API_PY
     }
-    if (store.getters.token) {
+    if (storage.get('token')) {
       // let each request carry token
       // ['X-Token'] is a custom headers key
       // please modify it according to the actual situation
-      config.headers['Authorization'] = ''
+      config.headers['Authorization'] = storage.get('token')
     }
     return config
   },

@@ -31,10 +31,10 @@ const store = new Vuex.Store({
     Login({commit}, userInfo) {
       return new Promise((resolve, reject) => {
         userLogin(userInfo).then(res => {
-          console.log(res)
+          storage.set('token', res.body.token)
           commit('setToken', res.body.token)
-          commit('setUserInfo',res.body.userBean)
-          Message.success("登入成功")
+          commit('setUserInfo', res.body.userBean)
+          Message.success(`Welcome ${res.body.userBean.userRoot === 0 ? getters.userName() : 'Admin'}`)
           resolve()
         }).catch(error => {
           reject(error)
@@ -54,7 +54,7 @@ const store = new Vuex.Store({
         try {
           queryUserPrivateInfo({}).then(res => {
             if (res) {
-              commit('setUserInfo', res.userInfo)
+              commit('setUserInfo', res.body.userBean)
               resolve(res)
             } else {
               commit('Logout')

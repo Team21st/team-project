@@ -8,11 +8,12 @@
       {{ item.label }}
     </a>
     <div class="header-right">
-      <el-avatar :size="40" style="display: block;margin-top: 5px">
+      <el-avatar :size="40" style="display: block;margin-top: 5px" :src="userInfo.profileUrl">
         User
       </el-avatar>
-      <a href="#" @click="pathTo('/login')" style="line-height: 50px;display: block">Login/Register</a>
-      <el-dropdown class="user-name" trigger="click" @command="handleCommand" v-if="userName">
+      <a href="#" @click="pathTo('/login')" style="line-height: 50px;display: block"
+         v-if="userName==null||userName===''">Login/Register</a>
+      <el-dropdown class="user-name" trigger="click" @command="handleCommand" v-else>
           <span class="el-dropdown-link">
             {{ userName }}
             <i class="el-icon-caret-bottom"></i>
@@ -26,7 +27,7 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex/dist/vuex.mjs";
+import {mapActions, mapGetters} from "vuex/dist/vuex.mjs";
 
 export default {
   name: "bars",
@@ -52,7 +53,11 @@ export default {
       ]
     }
   },
+  mounted() {
+    this.getUser()
+  },
   methods: {
+    ...mapActions(['getUserInfo']),
     pathTo(path) {
       this.$router.push(path)
     },
@@ -62,6 +67,9 @@ export default {
         this.$router.push("/login");
       }
     },
+    getUser(){
+      this.getUserInfo()
+    }
   },
   computed: {
     ...mapGetters(['userInfo', 'userName'])
@@ -89,6 +97,11 @@ export default {
 
     a:hover {
       text-decoration: 1px white;
+    }
+
+    .el-dropdown-link {
+      color: white;
+      margin-left: 5px;
     }
   }
 }
