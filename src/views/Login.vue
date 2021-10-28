@@ -1,6 +1,8 @@
 <template>
   <!--  注册与登入同页面-->
   <div id="login">
+    <forget-password ref="forgetPassword"></forget-password>
+    <!--    弹窗-->
     <el-button type="primary"
                @click="back"
                size="mini"
@@ -20,7 +22,7 @@
           </el-form-item>
         </el-form>
         <div style="text-align: right;margin-top: 30px">
-          <a href="#">forget password</a>
+          <a href="#" @click="forgetPassword">forget password</a>
         </div>
         <el-button style="width: 100%;margin-top: 10px" type="primary" @click="login">
           Log in
@@ -77,9 +79,11 @@
 import {userLogin, userRegister} from "@/api/user"
 import {sendEmail} from "@/api/message";
 import {mapActions, mapGetters} from "vuex/dist/vuex.mjs";
+import ForgetPassword from "@/components/Market/forgetPassword";
 
 export default {
   name: "Login",
+  components: {ForgetPassword},
   data() {
     return {
       isLogin: true,
@@ -168,6 +172,9 @@ export default {
     },
     back() {
       this.$router.push('/')
+    },
+    forgetPassword() {
+      this.$refs.forgetPassword.open()
     }
   },
   computed: {
