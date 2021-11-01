@@ -76,7 +76,7 @@ export function judgeUserName(params) {
   })
 }
 
-//用户商品相关
+//用户商品相关 查询我的上架商品记录（包括所有审核状态）
 export function queryMyCommodity(params) {
   return request({
     requestServer: 'StoreService',
