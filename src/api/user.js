@@ -66,3 +66,22 @@ export function userRegister(params) {
     data: params
   })
 }
+
+export function judgeUserName(params) {
+  return request({
+    requestServer: 'StoreService',
+    url: '/user/judgeUserName',
+    method: 'post',
+    data: params
+  })
+}
+
+//用户商品相关
+export function queryMyCommodity(params) {
+  return request({
+    requestServer: 'StoreService',
+    url: '/user/queryMyCommodity',
+    method: 'post',
+    data: params
+  })
+}
