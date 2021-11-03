@@ -28,20 +28,7 @@
       </div>
       <div>
         <h2>View sellers ···</h2>
-        <el-card style="margin-top: 10px">
-          <div slot="header" style="display: flex;justify-content: space-between">
-            <div style="display: flex">
-              <el-avatar :size="40" style="margin: 0;padding: 0">User</el-avatar>
-              <div style="line-height: 40px;margin: 0 10px">User Name</div>
-            </div>
-            <el-button style="float: right;margin: 0;" size="mini" icon="el-icon-d-arrow-right" @click="goTo"
-                       type="primary">Purchase
-            </el-button>
-          </div>
-          <div>
-            书本信息
-          </div>
-        </el-card>
+        <other-seller :book-i-d="bookID"/>
       </div>
     </div>
   </div>
@@ -50,6 +37,7 @@
 <script>
 import topSearch from "@/components/Market/topSearch";
 import bookInfo from "@/components/Market/bookTopInfo";
+import otherSeller from "@/components/Market/otherSeller";
 
 export default {
   name: "BookInfo",
@@ -62,13 +50,10 @@ export default {
   },
   components: {
     topSearch,
-    bookInfo
+    bookInfo,
+    otherSeller
   },
-  methods: {
-    goTo() {
-      this.$router.push('/')
-    }
-  }
+  methods: {}
 }
 </script>
 
