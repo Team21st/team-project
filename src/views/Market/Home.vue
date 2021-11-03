@@ -2,15 +2,23 @@
   <div id="home">
     <div class="banner">
       <div class="top-bar">
-        sss
+        <div class="left-block">
+          <el-image
+            style="height: 200px;left: 100px;margin-top: 80px"
+            :src="require('../../assets/images/h1.png')">
+          </el-image>
+          <el-image
+            style="height: 100px;left: 100px;top:50px"
+            :src="require('../../assets/images/h2.png')">
+          </el-image>
+        </div>
+        <div class="right-block">
+        </div>
+        <el-image
+          style="position: absolute;width: 500px;left: 700px;top: 60px"
+          :src="require('../../assets/people.png')">
+        </el-image>
       </div>
-      <div class="left-block">
-
-      </div>
-      <div class="right-block">
-
-      </div>
-      <img src="" alt="">
     </div>
     <el-row>
       <el-carousel indicator-position="outside" class="center">
@@ -21,15 +29,18 @@
     </el-row>
     <el-row>
       <div class="center list-project">
-        <div>
-          <h2>Book List</h2>
-          <a href="#">more</a>
+        <div class="list-head">
+          <h2>HOT BOOKS</h2>
+          <el-button type="text">more >>></el-button>
         </div>
-        <div>
-          <div v-for="(item,index) in bookList"
+        <div style="display: flex;justify-content: space-around;flex-wrap: wrap">
+          <div v-for="(item,index) in 6"
                :key="index"
                class="project">
-            <el-image :src="item.imgUrl"></el-image>
+            <el-image
+              style="height: 110px"
+              :src="item.imgUrl">
+            </el-image>
             <h3></h3>
             <p>$1</p>
           </div>
@@ -38,15 +49,18 @@
     </el-row>
     <el-row>
       <div class="center list-project">
-        <div>
-          <h2>User List</h2>
-          <a href="#">more</a>
+        <div class="list-head">
+          <h2>HOT BOOKS</h2>
+          <el-button type="text">more >>></el-button>
         </div>
-        <div>
-          <div v-for="(item,index) in bookList"
+        <div style="display: flex;justify-content: space-around;flex-wrap: wrap">
+          <div v-for="(item,index) in 6"
                :key="index"
                class="project">
-            <el-image :src="item.imgUrl"></el-image>
+            <el-image
+              style="height: 110px"
+              :src="item.imgUrl">
+            </el-image>
             <h3></h3>
             <p>$1</p>
           </div>
@@ -86,26 +100,37 @@ export default {
     height: 768px;
 
     .top-bar {
-      height: 500px;
+      height: 600px;
       background-color: white;
-    }
+      display: flex;
+      position: relative;
 
-    .left-block {
-      background-color: white;
-      width: 60%;
-    }
+      .left-block {
+        background-color: white;
+        width: 60%;
+      }
 
-    .right-block {
-      width: 40%;
-
+      .right-block {
+        background-color: #f0ede6;
+        width: 40%;
+      }
     }
   }
 }
 
 .list-project {
-  display: flex;
+  background-color: white;
   flex-wrap: wrap;
-  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 15px;
+
+  .list-head {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    border-bottom: 1px black solid;
+  }
 
   a {
     text-decoration: none;
@@ -113,7 +138,11 @@ export default {
   }
 
   .project {
+    height: 150px;
+    flex: 1 1 auto;
+    text-align: center;
     cursor: none;
+    padding: 10px;
   }
 }
 </style>
