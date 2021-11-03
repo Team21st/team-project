@@ -189,6 +189,7 @@ export default {
   height: 100vh;
 
   .submit {
+    background-color: white;
     width: 40%;
     flex: 1 1 auto;
 

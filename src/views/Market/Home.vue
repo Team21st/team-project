@@ -2,19 +2,7 @@
   <div id="home">
     <div class="banner">
       <div class="top-bar">
-        <div>
-          <el-image>
-
-          </el-image>
-          <div class="link-list">
-            <a>sss</a>
-          </div>
-        </div>
-        <el-input
-          style="width: 200px;position: absolute;right: 20px"
-          suffix-icon="el-icon-date"
-          prefix-icon="el-icon-search"
-        ></el-input>
+        sss
       </div>
       <div class="left-block">
 
@@ -78,7 +66,7 @@ export default {
           imgUrl: '',
           bookName: '',
           intro: '',
-          linkList:[]
+          linkList: []
         }
       ],
       userList: [],
@@ -98,8 +86,10 @@ export default {
     height: 768px;
 
     .top-bar {
-      position: absolute;
+      height: 500px;
+      background-color: white;
     }
+
     .left-block {
       background-color: white;
       width: 60%;

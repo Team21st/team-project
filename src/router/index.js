@@ -11,7 +11,7 @@ const routes = [
     meta: {title: 'Market'},
     children: [
       {
-        path: 'home',
+        path: '/',
         component: () => import('@/views/Market/Home'),
         meta: {title: 'Market'}
       },

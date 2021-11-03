@@ -18,14 +18,6 @@
           placeholder="The moon and six pence"
           @select="handleSelect"
         >
-          <el-select v-model="select"
-                     slot="prepend"
-                     placeholder="请选择"
-                     style="width: 90px">
-            <el-option label="餐厅名" value="1"></el-option>
-            <el-option label="订单号" value="2"></el-option>
-            <el-option label="用户电话" value="3"></el-option>
-          </el-select>
           <el-button slot="append" icon="el-icon-search">Search</el-button>
         </el-autocomplete>
       </el-col>
@@ -54,7 +46,6 @@ export default {
   data() {
     return {
       searchParams: '',
-      select: '',
       state1: '',
       restaurants: [],
       commodityList: []
@@ -90,7 +81,7 @@ export default {
     color: white;
   }
 
-  .input{
+  .input {
     color: orange
   }
 }
