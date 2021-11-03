@@ -35,6 +35,11 @@ const routes = [
         component: () => import('@/views/Market/BookInfo'),
         meta: {title: 'Book Info'}
       },
+      {
+        path: 'cart',
+        component: () => import('@/views/Market/Cart'),
+        meta: {title: 'Shopping Cart'}
+      },
     ]
   },
   {

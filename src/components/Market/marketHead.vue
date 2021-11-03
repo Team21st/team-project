@@ -1,7 +1,7 @@
 <template>
   <div id="head">
     <el-image
-      style="width: 200px"
+      style="height: 70px"
       :src="require('../../assets/logoRight.png')" alt=""></el-image>
     <h1>
       {{ head }}
@@ -18,8 +18,14 @@ export default {
 
 <style scoped lang="less">
 #head {
+  width: 500px;
   height: 80px;
   line-height: 80px;
   display: flex;
+  margin: 20px 20px;
+
+  h1 {
+    color: #723200;
+  }
 }
 </style>

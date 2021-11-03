@@ -54,7 +54,7 @@ const store = new Vuex.Store({
         try {
           queryUserPrivateInfo({}).then(res => {
             if (res) {
-              commit('setUserInfo', res.body.userBean)
+              commit('setUserInfo', res.body)
               resolve(res)
             } else {
               commit('Logout')
