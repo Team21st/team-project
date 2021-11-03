@@ -1,6 +1,6 @@
 <template>
   <div id="top-search">
-    <el-image :src="require('../../assets/logoRight.png')" style="height: 60px;margin: 20px 10px"></el-image>
+    <el-image :src="require('../../assets/logoRight.png')" style="height: 50px;margin: 20px 10px"></el-image>
     <el-autocomplete
       style="width: 90%;"
       class="inline-input"

@@ -2,9 +2,7 @@
   <div id="book-info">
     <top-search/>
     <div class="center">
-      <div>
-
-      </div>
+      <book-info :book-i-d="bookID"/>
       <div>
         <h2>Content introduction ···</h2>
         <div style="margin-top: 10px">
@@ -51,17 +49,20 @@
 
 <script>
 import topSearch from "@/components/Market/topSearch";
+import bookInfo from "@/components/Market/bookTopInfo";
 
 export default {
   name: "BookInfo",
   data() {
     return {
+      bookID: '',
       commentList: [],
       sellers: [],
     }
   },
   components: {
-    topSearch
+    topSearch,
+    bookInfo
   },
   methods: {
     goTo() {
