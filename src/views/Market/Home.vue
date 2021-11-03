@@ -112,11 +112,6 @@ export default {
   }
 }
 
-.center {
-  width: 1078px;
-  margin: auto;
-}
-
 .list-project {
   display: flex;
   flex-wrap: wrap;

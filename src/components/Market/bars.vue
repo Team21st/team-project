@@ -19,6 +19,7 @@
             <i class="el-icon-caret-bottom"></i>
           </span>
         <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item divided command="personal">Personal Page</el-dropdown-item>
           <el-dropdown-item divided command="logout">Log Out</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -68,6 +69,8 @@ export default {
           this.$message.error('Log Out')
         })
         this.$router.push("/login");
+      } else if (commond === 'personal') {
+        this.$router.push("/user");
       }
     },
     getUser() {
