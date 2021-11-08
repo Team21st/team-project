@@ -5,7 +5,7 @@ export function adminRegister(params) {
     requestServer: 'StoreService',
     url: '/admin/adminRegister',
     method: 'post',
-    params: params
+    data: params
   })
 }
 
@@ -14,6 +14,33 @@ export function queryAuditRecords(params) {
     requestServer: 'StoreService',
     url: '/manage/queryAuditRecords',
     method: 'post',
-    params: params
+    data: params
+  })
+}
+
+export function queryAllUsers(params) {
+  return request({
+    requestServer: 'StoreService',
+    url: '/manage/queryAllUsers',
+    method: 'post',
+    data: params
+  })
+}
+
+export function authorizeUser(params) {
+  return request({
+    requestServer: 'StoreService',
+    url: '/manage/authorizeUser',
+    method: 'post',
+    data: params
+  })
+}
+
+export function banUser(params) {
+  return request({
+    requestServer: 'StoreService',
+    url: '/manage/banUser',
+    method: 'post',
+    data: params
   })
 }

@@ -1,54 +1,51 @@
 <template>
   <div class="container">
     <el-table :data="commList" stripe
-              :default-sort="{prop: 'commodity.commName', order: 'increasing'}">
+              :default-sort="{prop: 'commName', order: 'increasing'}">
       <el-table-column type="expand">
         <template slot-scope="props">
           <el-form label-position="left" inline class="demo-table-expand">
-            <el-form-item label="Commodity ID">
-              <span>{{ props.row.commodity.commNo }}</span>
+            <el-form-item label="Book Name:">
+              <span>{{ props.row.bookName }}</span>
             </el-form-item>
-            <el-form-item label="Commodity type">
-              <span>{{ props.row.commodity.commTag }}</span>
+            <el-form-item label="bookDesc:">
+              <span>{{ props.row.bookDesc }}</span>
             </el-form-item>
-            <el-form-item label="Price">
-              <span>{{ props.row.commodity.commPrice }}</span>
+            <el-form-item label="Price:">
+              <span>{{ props.row.truePrice }}</span>
             </el-form-item>
-            <el-form-item label="Inventory">
-              <span>{{ props.row.commodity.commStock }}</span>
+            <el-form-item label="Release time:">
+              <span>{{ props.row.createTime }}</span>
             </el-form-item>
-            <el-form-item label="Release time">
-              <span>{{ props.row.commodity.createTime }}</span>
+            <el-form-item label="Releaser:">
+              <span>{{ props.row.createUser }}</span>
             </el-form-item>
-            <el-form-item label="Releaser ID">
-              <span>{{ props.row.commodity.createUser }}</span>
+            <el-form-item label="Reviewer:">
+              <span>{{ props.row.auditor }}</span>
             </el-form-item>
-            <el-form-item label="Reviewer">
-              <span>{{ props.row.commodity.auditor }}</span>
-            </el-form-item>
-            <el-form-item label="Audit time">
-              <span>{{ props.row.commodity.auditTime }}</span>
+            <el-form-item label="Audit time:">
+              <span>{{ props.row.auditTime }}</span>
             </el-form-item>
           </el-form>
         </template>
       </el-table-column>
       <el-table-column label="图片" width="120">
         <template slot-scope="scope">
-          <el-image :src="scope.row.commPicList[0]" fit='cover' :preview-src-list="scope.row.commPicList"
+          <el-image :src="scope.row.bookPicUrl" fit='cover'
                     style="width: 70px;height: 70px">
           </el-image>
         </template>
       </el-table-column>
-      <el-table-column prop="commodity.commName" label="名称" sortable></el-table-column>
-      <el-table-column prop="commodity.commNo" label="商品编码"></el-table-column>
-      <el-table-column prop="commodity.commDesc" label="简述"></el-table-column>
-      <el-table-column prop="commodity.userName" label="创建者" width="180" sortable></el-table-column>
-      <el-table-column prop="commodity.auditStatus" label="审核状态" sortable>
+      <el-table-column prop="bookName" label="Book Name" sortable></el-table-column>
+      <!--      <el-table-column prop="commNo" label="商品编码"></el-table-column>-->
+      <el-table-column prop="bookDesc" label="Desc"></el-table-column>
+      <el-table-column prop="createUser" label="Create User" width="180" sortable></el-table-column>
+      <el-table-column prop="auditStatus" label="Audit Status" sortable>
         <div slot-scope="scope">
-          <div v-if="scope.row.commodity.auditStatus === 0">
+          <div v-if="scope.row.auditStatus == null || scope.row.auditStatus===0">
             <el-tag type="primary">待审核</el-tag>
           </div>
-          <div v-else-if="scope.row.commodity.auditStatus === 1">
+          <div v-else-if="scope.row.auditStatus === 1">
             <el-tag type="success">审核通过</el-tag>
           </div>
           <div v-else>
@@ -58,11 +55,11 @@
       </el-table-column>
       <el-table-column label="商品操作" width="300">
         <template slot-scope="scope">
-          <el-button type="success" @click="allowCommo(scope.row.commodity.commNo)" size="small"
-                     v-if="scope.row.commodity.auditStatus===0||scope.row.commodity.auditStatus===2">通过
+          <el-button type="success" @click="allowCommo(scope.row.commNo)" size="small"
+                     v-if="scope.row.auditStatus==null||scope.row.auditStatus===2">通过
           </el-button>
-          <el-button type="danger" @click="refuseCommo(scope.row.commodity.commNo)" size="small"
-                     v-if="scope.row.commodity.auditStatus===0||scope.row.commodity.auditStatus===1">驳回
+          <el-button type="danger" @click="refuseCommo(scope.row.commNo)" size="small"
+                     v-if="scope.row.auditStatus==null||scope.row.auditStatus===1">驳回
           </el-button>
         </template>
       </el-table-column>
@@ -71,27 +68,30 @@
       <el-pagination
         @current-change="getCommList"
         background
-        :current-page="commListCurrent"
+        :current-page="queryForm.queryPage"
         :pager-count="11"
+        :total="queryForm.total"
         layout="prev, pager, next"
-        :page-count="commListPages">
+        :page-count="queryForm.querySize">
       </el-pagination>
     </div>
   </div>
 </template>
 
 <script>
+import {queryAuditRecords} from "@/api/admin";
 
 export default {
   name: "index",
   data() {
     return {
-      token: '',
-      commListCurrent: 1,
-      commListPages: '',
-      auditStatus: '',
       commList: '',
-      user: ''
+      queryForm: {
+        queryPage: 1,
+        querySize: 10,
+        type: '',
+        total: 0
+      }
     }
   },
   mounted() {
@@ -103,9 +103,15 @@ export default {
   },
   methods: {
     initData() {
-      this.getCommList(1)
+      this.getCommList()
     },
     getCommList() {
+      queryAuditRecords(this.queryForm).then(res => {
+        this.commList = res.body.records
+        this.queryForm.queryPage = res.body.current
+        this.queryForm.querySize = res.body.size
+        this.queryForm.total = res.body.total
+      })
     },
     rTime: function (date) {
       var date1 = new Date(date).toJSON();

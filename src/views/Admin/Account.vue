@@ -1,24 +1,31 @@
 <template>
   <div class="container">
-    <el-table :data="userList" style="width: 100%">
-      <el-table-column prop="userBean.lastLoginTime" label="最后登入日期" width></el-table-column>
-      <el-table-column prop="userBean.userName" label="用户名" ></el-table-column>
-      <el-table-column prop="userBean.userEmail" label="邮箱" ></el-table-column>
-      <el-table-column prop="userBean.userNo" label="UUID" width="250"></el-table-column>
-      <el-table-column prop="userBean.unquaComm" label="不合格商品数" ></el-table-column>
-      <el-table-column prop="userBean.isBan" label="账号状态">
+    <el-table :data="userList"
+              style="width: 100%">
+      <el-table-column prop="lastLoginTime" label="最后登入日期" width :show-overflow-tooltip="true"></el-table-column>
+      <el-table-column prop="userName" label="用户名" :show-overflow-tooltip="true"></el-table-column>
+      <el-table-column prop="userEmail" label="邮箱" :show-overflow-tooltip="true"></el-table-column>
+      <el-table-column prop="userNo" label="UUID" width="100" :show-overflow-tooltip="true"></el-table-column>
+      <el-table-column prop="unquaComm" label="不合格商品数"></el-table-column>
+      <el-table-column prop="isBan" label="账号状态">
         <div slot-scope="scope">
-          <div v-if="scope.row.userBean.isBan === 0"><el-tag type="success">正常</el-tag></div>
-          <div v-else><el-tag type="danger">封禁</el-tag></div>
+          <div v-if="scope.row.isBan === 1">
+            <el-tag type="success">正常</el-tag>
+          </div>
+          <div v-else>
+            <el-tag type="danger">封禁</el-tag>
+          </div>
         </div>
       </el-table-column>
       <el-table-column label="账号操作">
         <template slot-scope="scope">
-          <el-button type="danger" @click="banUser(scope.row.userBean.userNo)"
-                     v-if="scope.row.userBean.isBan===0">封禁
+          <el-button type="danger"
+                     size="mini"
+                     v-if="scope.row.isBan===1">封禁
           </el-button>
-          <el-button type="success" @click="unBanUser(scope.row.userBean.userNo)"
-                     v-if="scope.row.userBean.isBan===1">解封
+          <el-button type="success"
+                     size="mini"
+                     v-if="scope.row.isBan===2">解封
           </el-button>
         </template>
       </el-table-column>
@@ -27,38 +34,52 @@
       <el-pagination
         @current-change="getUserList"
         background
-        :current-page="userListCurrent"
+        :current-page="queryForm.queryPage"
         :pager-count="5"
+        :total="queryForm.total"
         layout="prev, pager, next"
-        :page-count="userListPages">
+        :page-count="queryForm.querySize">
       </el-pagination>
     </div>
   </div>
 </template>
 
 <script>
+import {queryAllUsers, banUser} from "@/api/admin";
+
 export default {
   name: "Account",
   data() {
     return {
-      userList: '',
-      userListCurrent: 1,
-      userListPages: '',
-      token: ''
+      userList: [],
+      token: '',
+      queryForm: {
+        authentication: '',
+        isBan: '',
+        queryPage: 1,
+        querySize: 10,
+        userEmail: '',
+        total: 0
+      }
     }
   },
   mounted() {
-    this.token = this.$store.state.token
     this.$nextTick(function () {
       this.initData()
     })
   },
   methods: {
     initData() {
-      this.getUserList(1)
+      this.getUserList()
     },
-    // getUserList(val) {
-    // },
+    getUserList() {
+      queryAllUsers(this.queryForm).then(res => {
+        this.userList = res.body.records
+        this.queryForm.queryPage = res.body.current
+        this.queryForm.querySize = res.body.size
+        this.queryForm.total = res.body.total
+      })
+    },
     // banUser(userNo) {
     // },
     // unBanUser(userNo) {

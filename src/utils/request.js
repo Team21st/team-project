@@ -46,14 +46,7 @@ service.interceptors.response.use(
     }
     return response.data
   },
-  error => {
-    if (error.toString().indexOf('401')) {
-      Message({
-        message: 'token has expired',
-        type: 'error',
-        duration: 5 * 1000
-      })
-    } else {
+  error => {{
       console.log('err' + error) // for debug
       Message({
         message: error.message,
