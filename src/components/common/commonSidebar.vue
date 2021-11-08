@@ -153,19 +153,19 @@ export default {
 
 /* 设置鼠标悬停时el-menu-item的样式 */
 .el-menu-item:hover {
-  border-left: #409EFF solid 6px !important;
+  border-left: #FF8733 solid 6px !important;
   background-color: #e2eff9 !important;
-  color: #409EFF !important;
+  color: #FF8733 !important;
 }
 
 .el-menu-item:hover i {
-  color: #409EFF;
+  color: #FF8733;
 }
 
 /* 设置选中el-menu-item时的样式 */
 .el-menu-item.is-active {
-  border-left: #409EFF solid 6px !important;
+  border-left: #FF8733 solid 6px !important;
   background-color: #e2eff9 !important;
-  color: #409EFF !important;
+  color: #FF8733 !important;
 }
 </style>

@@ -2,14 +2,15 @@
   <div class="container">
     <el-table :data="userList"
               style="width: 100%">
-      <el-table-column prop="lastLoginTime" label="最后登入日期" width :show-overflow-tooltip="true"></el-table-column>
-      <el-table-column prop="userName" label="用户名" :show-overflow-tooltip="true"></el-table-column>
-      <el-table-column prop="userEmail" label="邮箱" :show-overflow-tooltip="true"></el-table-column>
-      <el-table-column prop="userNo" label="UUID" width="100" :show-overflow-tooltip="true"></el-table-column>
-      <el-table-column prop="unquaComm" label="不合格商品数"></el-table-column>
-      <el-table-column prop="isBan" label="账号状态">
+      <el-table-column prop="lastLoginTime" label="Last Login Time" width
+                       :show-overflow-tooltip="true"></el-table-column>
+      <el-table-column prop="userName" label="userName" :show-overflow-tooltip="true"></el-table-column>
+      <el-table-column prop="userEmail" label="userEmail" :show-overflow-tooltip="true"></el-table-column>
+      <el-table-column prop="userNo" label="userNo" width="100" :show-overflow-tooltip="true"></el-table-column>
+      <el-table-column prop="unquaComm" label="unquaComm number"></el-table-column>
+      <el-table-column prop="isBan" label="Status">
         <div slot-scope="scope">
-          <div v-if="scope.row.isBan === 1">
+          <div v-if="scope.row.isBan === 0">
             <el-tag type="success">正常</el-tag>
           </div>
           <div v-else>
@@ -21,11 +22,23 @@
         <template slot-scope="scope">
           <el-button type="danger"
                      size="mini"
-                     v-if="scope.row.isBan===1">封禁
+                     @click=setUserStatus(1,scope.row.userNo)
+                     v-if="scope.row.isBan===0">Ban
           </el-button>
           <el-button type="success"
                      size="mini"
-                     v-if="scope.row.isBan===2">解封
+                     @click=setUserStatus(0,scope.row.userNo)
+                     v-if="scope.row.isBan===1">unBan
+          </el-button>
+          <el-button type="success"
+                     size="mini"
+                     @click=setAuthorizeUser(2,scope.row.userNo)
+                     v-if="scope.row.isBan===1">Approve
+          </el-button>
+          <el-button type="danger"
+                     size="mini"
+                     @click=setAuthorizeUser(3,scope.row.userNo)
+                     v-if="scope.row.isBan===1">Reject
           </el-button>
         </template>
       </el-table-column>
@@ -45,7 +58,7 @@
 </template>
 
 <script>
-import {queryAllUsers, banUser} from "@/api/admin";
+import {queryAllUsers, banUser, authorizeUser} from "@/api/admin";
 
 export default {
   name: "Account",
@@ -80,10 +93,23 @@ export default {
         this.queryForm.total = res.body.total
       })
     },
-    // banUser(userNo) {
-    // },
-    // unBanUser(userNo) {
-    // },
+    setUserStatus(status, userNo) {
+      banUser({
+        //封禁状态(0 正常, 1 封禁)
+        isBan: status,
+        userNo: userNo
+      }).then(res => {
+        this.$message.success(res.body)
+        this.getUserList()
+      })
+    },
+    setAuthorizeUser(authentication, userNo) {
+      authorizeUser({
+        // 认证状态(0 未认证, 1 认证中, 2 认证通过 , 3 认证失败)
+        authentication: authentication,
+        userNo: userNo
+      })
+    },
     rTime: function (date) {
       var date1 = new Date(date).toJSON();
       return new Date(+new Date(date1) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')

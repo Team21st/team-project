@@ -15,13 +15,13 @@
     </ul>
     <div class="tags-close-box">
       <el-dropdown @command="handleTags">
-        <el-button size="mini" type="primary" style="border-radius: 2px !important;background-color: #409EFF">
-          标签选项
+        <el-button size="mini" type="primary">
+          Tags
           <i class="el-icon-arrow-down el-icon--right"></i>
         </el-button>
         <el-dropdown-menu size="small" slot="dropdown">
-          <el-dropdown-item command="other">关闭其他</el-dropdown-item>
-          <el-dropdown-item command="all">关闭所有</el-dropdown-item>
+          <el-dropdown-item command="other">Close other</el-dropdown-item>
+          <el-dropdown-item command="all">Close all</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -183,7 +183,7 @@ export default {
 }
 
 .tags-li.active {
-  border: 1px solid #409EFF;
-  background-color: #409EFF;
+  border: 1px solid #FF8733;
+  background-color: #FF8733;
 }
 </style>

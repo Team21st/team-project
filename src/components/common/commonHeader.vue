@@ -93,7 +93,7 @@ export default {
   width: 100%;
   height: 70px;
   font-size: 22px;
-  background-color: #409EFF;
+  background-color: #FF8733;
   color: #ffffff;
   margin-bottom: 10px;
   border-bottom: 1px solid #eee;
