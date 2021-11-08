@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import {userLogin, userRegister} from "@/api/user"
+import {userRegister, judgeUserName} from "@/api/user"
 import {sendEmail} from "@/api/message";
 import {mapActions, mapGetters} from "vuex/dist/vuex.mjs";
 import ForgetPassword from "@/components/Market/forgetPassword";
@@ -85,6 +85,17 @@ export default {
   name: "Login",
   components: {ForgetPassword},
   data() {
+    const checkUserName = async (rule, value, callback) => {
+      if (await judgeUserName({
+        userName: value
+      }).then(res => {
+        return res.body === 'user name pass'
+      })) {
+        callback(new Error('用户名已被使用'))
+      } else {
+        callback()
+      }
+    }
     return {
       isLogin: true,
       loginForm: {
@@ -118,7 +129,8 @@ export default {
         ],
         userName: [
           {required: true, message: 'Please enter your userName', trigger: 'blur'},
-          {min: 4, max: 10, message: 'The length is 4 to 10 characters', trigger: 'blur'}
+          {min: 4, max: 10, message: 'The length is 4 to 10 characters', trigger: 'blur'},
+          {validator: checkUserName, trigger: 'blur'}
         ]
       }
     }
