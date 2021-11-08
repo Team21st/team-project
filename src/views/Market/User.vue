@@ -2,7 +2,7 @@
   <!--  用户主页-->
   <div id="personal-page">
     <el-row :gutter="40">
-      <el-col :span="6" style="padding:0 10px;">
+      <el-col :span="6">
         <el-menu
           v-model="tags"
           @select="select"
@@ -41,27 +41,27 @@ export default {
       tags: 0,
       tagsList: [
         {
-          icon: '',
+          icon: 'el-icon-user-solid',
           label: 'Personal Information',
           tag: "0"
         },
         {
-          icon: '',
+          icon: 'el-icon-s-goods',
           label: 'Order History',
           tag: "1"
         },
         {
-          icon: '',
+          icon: 'el-icon-box',
           label: 'Order received',
           tag: "2"
         },
         {
-          icon: '',
+          icon: 'el-icon-upload',
           label: 'Release Book',
           tag: "3"
         },
         {
-          icon: '',
+          icon: 'el-icon-s-claim',
           label: 'My Selling Books',
           tag: "4"
         }
