@@ -14,9 +14,11 @@
         </el-menu>
       </el-col>
       <el-col :span="18">
+        <el-card style="margin-bottom: 20px">
+          个人信息
+        </el-card>
         <el-card>
-          sss
-          <info/>
+          <info v-if="tags===0" />
           <purchase-history/>
           <receive-order/>
           <release-book/>
