@@ -13,12 +13,12 @@
         <el-autocomplete
           style="width: 90%;"
           class="inline-input"
-          v-model="state1"
+          v-model="queryForm.bookName"
           :fetch-suggestions="querySearch"
           placeholder="The moon and six pence"
           @select="handleSelect"
         >
-          <el-button slot="append" icon="el-icon-search">Search</el-button>
+          <el-button slot="append" icon="el-icon-search" @click="searchCommodities">Search</el-button>
         </el-autocomplete>
       </el-col>
       <el-col :span="7">
@@ -37,6 +37,7 @@
 
 <script>
 import commonList from "@/components/Search/commonList";
+import {queryCommodities} from "@/api/trade";
 
 export default {
   components: {
@@ -48,7 +49,15 @@ export default {
       searchParams: '',
       state1: '',
       restaurants: [],
-      commodityList: []
+      commodityList: [],
+      queryForm: {
+        bookName: '',
+        queryPage: 1,
+        querySize: 10,
+        sellerName: '',
+        sortType: []
+        //排序方式,1(按时间最新排序)，2（按时间最久排序），3（按价格低到高排序），4（按价格高到低排序），5（按图书销量最多排序），6（按图书销量最少排序）
+      }
     }
   },
   methods: {
@@ -65,6 +74,11 @@ export default {
     },
     handleSelect(item) {
       console.log(item);
+    },
+    searchCommodities() {
+      queryCommodities(this.queryForm).then(res => {
+        console.log(res)
+      })
     }
   }
 }

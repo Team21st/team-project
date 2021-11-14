@@ -39,10 +39,10 @@ service.interceptors.request.use(
 // response interceptor
 service.interceptors.response.use(
   response => {
-    if (response.data.respCode === -1
-      || response.data.respCode === -2) {
-      Message.error(response.data.respMsg)
-      return Promise.reject(response.data.respMsg)
+    if (response.data.head.respCode === -1
+      || response.data.head.respCode === -2) {
+      Message.error(response.data.head.respMsg)
+      return Promise.reject(response.data.head.respMsg)
     }
     return response.data
   },

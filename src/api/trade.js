@@ -5,7 +5,7 @@ export function bookOnShelve(params) {
     requestServer: 'StoreService',
     url: '/trade/bookOnShelve',
     method: 'post',
-    params: params
+    data: params
   })
 }
 
@@ -14,7 +14,7 @@ export function deleteBookOnShelve(params) {
     requestServer: 'StoreService',
     url: '/trade/deleteBookOnShelve',
     method: 'post',
-    params: params
+    data: params
   })
 }
 
@@ -23,7 +23,7 @@ export function editBookOnShelve(params) {
     requestServer: 'StoreService',
     url: '/trade/editBookOnShelve',
     method: 'post',
-    params: params
+    data: params
   })
 }
 
@@ -33,7 +33,7 @@ export function sellerQueryOrderList(params) {
     requestServer: 'StoreService',
     url: '/trade/sellerQueryOrderList',
     method: 'post',
-    params: params
+    data: params
   })
 }
 
@@ -43,7 +43,7 @@ export function queryCommodities(params) {
     requestServer: 'StoreService',
     url: '/trade/queryCommodities',
     method: 'post',
-    params: params
+    data: params
   })
 }
 
@@ -53,7 +53,7 @@ export function placeOrder(params) {
     requestServer: 'StoreService',
     url: '/trade/placeOrder',
     method: 'post',
-    params: params
+    data: params
   })
 }
 
@@ -64,7 +64,7 @@ export function queryShoppingCart(params) {
     requestServer: 'StoreService',
     url: '/trade/queryShoppingCart',
     method: 'post',
-    params: params
+    data: params
   })
 }
 
@@ -74,7 +74,7 @@ export function editShoppingCart(params) {
     requestServer: 'StoreService',
     url: '/trade/editShoppingCart',
     method: 'post',
-    params: params
+    data: params
   })
 }
 
@@ -84,6 +84,6 @@ export function palaceCartOrder(params) {
     requestServer: 'StoreService',
     url: '/trade/palaceCartOrder',
     method: 'post',
-    params: params
+    data: params
   })
 }
