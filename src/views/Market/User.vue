@@ -7,7 +7,9 @@
           v-model="tags"
           @select="select"
           default-active="0">
-          <el-menu-item v-for="(item) in tagsList" :index="item.tag" :key="item.tag">
+          <el-menu-item v-for="(item) in tagsList"
+                        :index="item.tag"
+                        :key="item.tag">
             <i :class="item.icon"></i>
             <span slot="title">{{ item.label }}</span>
           </el-menu-item>
@@ -18,11 +20,11 @@
           个人信息
         </el-card>
         <el-card>
-          <info v-if="tags===0" />
-          <purchase-history/>
-          <receive-order/>
-          <release-book/>
-          <user-sell-book/>
+          <info v-if="tags==='0'"/>
+          <purchase-history v-else-if="tags==='1'"/>
+          <receive-order v-else-if="tags==='2'"/>
+          <release-book v-else-if="tags==='3'"/>
+          <user-sell-book v-else/>
         </el-card>
       </el-col>
     </el-row>
@@ -72,7 +74,7 @@ export default {
   },
   methods: {
     select(value) {
-      console.log(value)
+      this.tags = value
     }
   },
   components: {
