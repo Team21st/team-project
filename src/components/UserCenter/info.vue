@@ -1,6 +1,6 @@
 <template>
   <div id="user-info">
-    // 密码修改弹窗
+    <h2>Personal Info</h2>
     <el-dialog
       title="Change Password"
       :visible.sync="dialogVisible"
@@ -20,14 +20,23 @@
     </el-dialog>
 
     <el-form label-width="80px" :model="userInfo">
-      <el-form-item label="名称">
+      <el-form-item label="College">
         <el-input v-model="userInfo.name"></el-input>
       </el-form-item>
-      <el-form-item label="活动区域">
+      <el-form-item label="Student ID">
         <el-input v-model="userInfo.region"></el-input>
       </el-form-item>
-      <el-form-item label="活动形式">
-        <el-input v-model="userInfo.type"></el-input>
+      <el-form-item label="Birthday">
+        <el-input v-model="userInfo.birthday"></el-input>
+      </el-form-item>
+      <el-form-item label="userName">
+        <el-input v-model="userInfo.userName"></el-input>
+      </el-form-item>
+      <el-form-item label="userRealName">
+        <el-input v-model="userInfo.userRealName"></el-input>
+      </el-form-item>
+      <el-form-item label="Resume">
+        <el-input v-model="userInfo.userInfo"></el-input>
       </el-form-item>
     </el-form>
     <div>
@@ -44,7 +53,14 @@ export default {
   name: "info",
   data() {
     return {
-      userInfo: {},
+      userInfo: {
+        birthday: '',
+        college: '',
+        sno: '',
+        userInfo: '',
+        userName: '',
+        userRealName: ''
+      },
       dialogVisible: false,
       passwordForm: {
         newPassword: '',
@@ -68,5 +84,9 @@ export default {
   width: 400px;
   margin: auto;
   text-align: center;
+
+  h2{
+    margin-bottom: 20px;
+  }
 }
 </style>
