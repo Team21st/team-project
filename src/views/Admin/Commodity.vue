@@ -55,10 +55,10 @@
       </el-table-column>
       <el-table-column label="商品操作" width="300">
         <template slot-scope="scope">
-          <el-button type="success" @click="allowCommo(scope.row.commNo)" size="small"
+          <el-button type="success" @click="setBookAudit(1,scope.row.bookNo)" size="small"
                      v-if="scope.row.auditStatus==null||scope.row.auditStatus===2">通过
           </el-button>
-          <el-button type="danger" @click="refuseCommo(scope.row.commNo)" size="small"
+          <el-button type="danger" @click="setBookAudit(2,scope.row.bookNo)" size="small"
                      v-if="scope.row.auditStatus==null||scope.row.auditStatus===1">驳回
           </el-button>
         </template>
@@ -79,7 +79,7 @@
 </template>
 
 <script>
-import {queryAuditRecords} from "@/api/admin";
+import {queryAuditRecords,auditBooks} from "@/api/admin";
 
 export default {
   name: "index",
@@ -117,9 +117,15 @@ export default {
       var date1 = new Date(date).toJSON();
       return new Date(+new Date(date1) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
     },
-    allowCommo() {
-    },
-    refuseCommo() {
+    setBookAudit(auditStatus,bookNo){
+      auditBooks({
+        // 审核状态(1 通过,0 审核中,2 审核不通过)
+        auditStatus:auditStatus,
+        bookNo:bookNo
+      }).then(res=>{
+        this.$message.success(res.body)
+        this.getCommList()
+      })
     }
   }
 }

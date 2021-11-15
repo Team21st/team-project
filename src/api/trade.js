@@ -87,3 +87,12 @@ export function palaceCartOrder(params) {
     data: params
   })
 }
+
+export function addShoppingCart(params) {
+  return request({
+    requestServer: 'StoreService',
+    url: '/trade/addShoppingCart',
+    method: 'post',
+    data: params
+  })
+}

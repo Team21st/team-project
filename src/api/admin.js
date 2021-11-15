@@ -44,3 +44,12 @@ export function banUser(params) {
     data: params
   })
 }
+
+export function auditBooks(params) {
+  return request({
+    requestServer: 'StoreService',
+    url: '/manage/auditBooks',
+    method: 'post',
+    data: params
+  })
+}

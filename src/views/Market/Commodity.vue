@@ -38,6 +38,7 @@
 import topSearch from "@/components/Market/topSearch";
 import commodityTopInfo from "@/components/Market/commodityTopInfo";
 import otherSeller from "@/components/Market/otherSeller";
+import {placeOrder,addShoppingCart} from "@/api/trade";
 
 export default {
   name: "Commodity",

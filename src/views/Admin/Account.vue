@@ -11,14 +11,14 @@
       <el-table-column prop="isBan" label="Status">
         <div slot-scope="scope">
           <div v-if="scope.row.isBan === 0">
-            <el-tag type="success">正常</el-tag>
+            <el-tag type="success">Normal</el-tag>
           </div>
           <div v-else>
-            <el-tag type="danger">封禁</el-tag>
+            <el-tag type="danger">Banned</el-tag>
           </div>
         </div>
       </el-table-column>
-      <el-table-column label="账号操作">
+      <el-table-column label="Account Operation">
         <template slot-scope="scope">
           <el-button type="danger"
                      size="mini"
@@ -33,12 +33,12 @@
           <el-button type="success"
                      size="mini"
                      @click=setAuthorizeUser(2,scope.row.userNo)
-                     v-if="scope.row.isBan===1">Approve
+                     v-if="scope.row.authentication!==2">Approve
           </el-button>
           <el-button type="danger"
                      size="mini"
                      @click=setAuthorizeUser(3,scope.row.userNo)
-                     v-if="scope.row.isBan===1">Reject
+                     v-else>Reject
           </el-button>
         </template>
       </el-table-column>
@@ -108,6 +108,9 @@ export default {
         // 认证状态(0 未认证, 1 认证中, 2 认证通过 , 3 认证失败)
         authentication: authentication,
         userNo: userNo
+      }).then(res=>{
+        this.$message.success(res.body)
+        this.getUserList()
       })
     },
     rTime: function (date) {
