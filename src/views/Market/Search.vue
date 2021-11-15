@@ -30,8 +30,16 @@
       </el-col>
     </el-row>
     <el-row style="text-align: center;background-color: #f2efe8;">
-      <commonList :searchParams="searchParams"></commonList>
+      <commonList :commodityList="commodityList"></commonList>
     </el-row>
+    <el-pagination
+      style="text-align: center;margin: 20px 0"
+      background
+      :page-size="queryForm.querySize"
+      :current-page="queryForm.queryPage"
+      layout="prev, pager, next"
+      :total="queryForm.total">
+    </el-pagination>
   </div>
 </template>
 
@@ -55,10 +63,14 @@ export default {
         queryPage: 1,
         querySize: 10,
         sellerName: '',
-        sortType: []
+        sortType: [],
         //排序方式,1(按时间最新排序)，2（按时间最久排序），3（按价格低到高排序），4（按价格高到低排序），5（按图书销量最多排序），6（按图书销量最少排序）
+        total:0
       }
     }
+  },
+  mounted() {
+    this.searchCommodities()
   },
   methods: {
     querySearch(queryString, cb) {
@@ -78,6 +90,8 @@ export default {
     searchCommodities() {
       queryCommodities(this.queryForm).then(res => {
         console.log(res)
+        this.commodityList = res.body.records
+        this.queryForm.total = res.body.total
       })
     }
   }
@@ -86,6 +100,7 @@ export default {
 
 <style scoped lang="less">
 #search {
+  min-height: 100vh;
   background-color: #f2efe8;
 
   .el-button {
