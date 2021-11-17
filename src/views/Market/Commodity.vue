@@ -95,6 +95,10 @@ export default {
   methods: {
     getCommodityInfo() {
       let id = this.$route.query.id
+      if(id.length===0){
+        this.$message.error('error id')
+        this.$router.back()
+      }
       queryCommodities({
         bookNo: id
       }).then(res => {

@@ -9,7 +9,7 @@
       placeholder="The moon and six pence"
       @select="handleSelect"
     >
-      <el-button slot="append" icon="el-icon-search">Search</el-button>
+      <el-button slot="append" icon="el-icon-search" @click="toSearch">Search</el-button>
     </el-autocomplete>
   </div>
 </template>
@@ -31,6 +31,14 @@ export default {
     },
     handleSelect(item) {
       console.log(item);
+    },
+    toSearch() {
+      this.$router.push({
+        path: '/search',
+        query: {
+          search: this.search
+        }
+      })
     }
   }
 }

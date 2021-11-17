@@ -60,7 +60,9 @@ export default {
   methods: {
     ...mapActions(['getUserInfo', 'Logout']),
     pathTo(path) {
-      this.$router.push(path)
+      this.$router.push({
+        path:path
+      })
     },
     // 下拉菜单选择
     handleCommand(commond) {

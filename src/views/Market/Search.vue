@@ -65,11 +65,15 @@ export default {
         sellerName: '',
         sortType: [],
         //排序方式,1(按时间最新排序)，2（按时间最久排序），3（按价格低到高排序），4（按价格高到低排序），5（按图书销量最多排序），6（按图书销量最少排序）
-        total:0
+        total: 0
       }
     }
   },
   mounted() {
+    let search = this.$route.query.search
+    if (search != null && search.length !== 0) {
+      this.queryForm.bookName = search
+    }
     this.searchCommodities()
   },
   methods: {

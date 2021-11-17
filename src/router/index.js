@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import storage from 'store'
+import {Message} from 'element-ui'
 
 Vue.use(VueRouter)
 
@@ -85,8 +87,23 @@ const router = new VueRouter({
   routes
 })
 
-// router.beforeEach((to, from, next) => {
-//   // 路由守卫
-// })
+// 解决重复点击路由报错的BUG
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch((err) => err)
+}
+
+router.beforeEach((to, from, next) => {
+  let token = storage.get('token')
+  if (to.path === '/user' && token == null) {
+    Message.error('You need to Login !')
+    next({
+      path: '/login'
+    })
+  } else {
+    next()
+  }
+  // 路由守卫
+})
 
 export default router
