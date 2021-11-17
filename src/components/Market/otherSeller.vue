@@ -1,6 +1,6 @@
 <template>
   <div id="sellers">
-    <el-card style="margin-top: 10px">
+    <el-card style="margin-top: 10px" v-for="item in otherSeller" :key="item.sellerName">
       <div slot="header" style="display: flex;justify-content: space-between">
         <div style="display: flex">
           <el-avatar :size="40" style="margin: 0;padding: 0">User</el-avatar>
@@ -20,7 +20,7 @@
 <script>
 export default {
   name: "otherSeller",
-  props: ['bookID'],
+  props: ['otherSeller'],
   data() {
     return {}
   },
