@@ -8,7 +8,7 @@
         style="margin-left: 10px"
         v-model="orderForm.num"
         @change="handleChange"
-        :min="1" :max="10"
+        :min="1" :max="bookInfo.bookStock"
         label="sss">
       </el-input-number>
       <el-button style="margin-left: 10px" type="primary" size="max">Buy Now</el-button>
@@ -38,7 +38,7 @@
 import topSearch from "@/components/Market/topSearch";
 import commodityTopInfo from "@/components/Market/commodityTopInfo";
 import otherSeller from "@/components/Market/otherSeller";
-import {placeOrder,addShoppingCart} from "@/api/trade";
+import {placeOrder, addShoppingCart, queryCommodities} from "@/api/trade";
 
 export default {
   name: "Commodity",
@@ -46,9 +46,25 @@ export default {
     return {
       bookInfo: {},
       bookID: '',
-      orderForm: {},
+      orderForm: {
+        address:'',
+        num:1,
+        bookNo:this.bookInfo.bookNo,
+        consignee:'',
+        phone:'',
+        price:'',
+        sellerNo:this.bookInfo.sellerNo
+      },
       cartForm: {}
     }
+  },
+  mounted() {
+    let id = this.$route.query.id
+    queryCommodities({
+      bookNo: id
+    }).then(res => {
+      this.bookInfo = res.body.records[0]
+    })
   },
   methods: {
     handleChange(value) {

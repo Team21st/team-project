@@ -2,16 +2,18 @@
   <el-row id="top-commodity-info">
     <el-col :span="4">
       <el-image
+        fit="fill"
+        :src="bookInfo.bookPicUrl"
         style="">
       </el-image>
     </el-col>
     <el-col :span="12">
-      <h1>Santi</h1>
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
-      <div>4</div>
-      <div>5</div>
+      <h1>{{ bookInfo.bookName }}</h1>
+      <div>{{ bookInfo.bookDesc }}</div>
+      <div>{{ bookInfo.bookPrice }}</div>
+      <div>{{bookInfo.newOldDegree}} %</div>
+      <div>{{ bookInfo.bookSale }}</div>
+      <div>{{ bookInfo.bookStock - bookInfo.bookSale }}</div>
     </el-col>
     <el-col :span="6">
       卖家信息
