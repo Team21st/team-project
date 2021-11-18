@@ -62,7 +62,6 @@
               style="height: 110px;width: 80px"
               :src="item.bookPicUrl">
             </el-image>
-            <h3></h3>
             <p>{{item.bookName}}</p>
           </div>
         </div>
@@ -80,9 +79,8 @@
                class="project">
             <el-image
               style="height: 110px;width: 80px"
-              :src="item.bookPicUrl">
+              :src="item.profileUrl">
             </el-image>
-            <h3></h3>
             <p>{{item.userName}}</p>
           </div>
         </div>
