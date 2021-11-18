@@ -55,7 +55,7 @@
           <el-button type="text">more >>></el-button>
         </div>
         <div style="display: flex;justify-content: space-around;flex-wrap: wrap">
-          <div v-for="(item,index) in bookList"
+          <div v-for="(item,index) in bookList.slice(0,5)"
                :key="index"
                class="project">
             <el-image
@@ -75,7 +75,7 @@
           <el-button type="text">more >>></el-button>
         </div>
         <div style="display: flex;justify-content: space-around;flex-wrap: wrap">
-          <div v-for="(item,index) in userList"
+          <div v-for="(item,index) in userList.slice(0,5)"
                :key="index"
                class="project">
             <el-image
@@ -92,7 +92,6 @@
 </template>
 
 <script>
-//import the api
 import {queryCommodities,queryBusiness} from "@/api/trade";
 
 export default {
