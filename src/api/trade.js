@@ -37,15 +37,6 @@ export function sellerQueryOrderList(params) {
   })
 }
 
-// 搜索商品
-export function queryCommodities(params) {
-  return request({
-    requestServer: 'StoreService',
-    url: '/trade/queryCommodities',
-    method: 'post',
-    data: params
-  })
-}
 
 // 下单
 export function placeOrder(params) {
@@ -96,3 +87,25 @@ export function addShoppingCart(params) {
     data: params
   })
 }
+
+
+//查询商家=>hot sellers
+export function queryBusiness(params) {
+  return request({
+    requestServer: 'StoreService',
+    url: '/trade/queryBusiness',
+    method: 'post',
+    data: params
+  })
+}
+
+// 搜索商品//查询商品=>hot books
+export function queryCommodities(params) {
+  return request({
+    requestServer: 'StoreService',
+    url: '/trade/queryCommodities',
+    method: 'post',
+    data: params
+  })
+}
+

@@ -17,7 +17,9 @@
       </el-col>
       <el-col :span="18">
         <el-card style="margin-bottom: 20px">
-          个人信息
+        <!--          -->
+              个人信息
+        <!--          -->
         </el-card>
         <el-card>
           <info v-if="tags==='0'"/>
