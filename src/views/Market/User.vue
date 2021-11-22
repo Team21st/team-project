@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 import info from "@/components/UserCenter/info";
 import purchaseHistory from "@/components/UserCenter/purchaseHistory";
 import receiveOrder from "@/components/UserCenter/receiveOrder";
@@ -71,7 +72,8 @@ export default {
           label: 'My Selling Books',
           tag: "4"
         }
-      ]
+      ],
+      userInfo:'',
     }
   },
   methods: {

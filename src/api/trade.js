@@ -109,3 +109,13 @@ export function queryCommodities(params) {
   })
 }
 
+//查看订单
+export function queryOrder(params) {
+  return request({
+    requestServer: 'StoreService',
+    url: '/trade/queryOrder',
+    method: 'post',
+    data: params
+  })
+}
+

@@ -93,17 +93,17 @@ VueRouter.prototype.push = function push(location) {
   return originalPush.call(this, location).catch((err) => err)
 }
 
-router.beforeEach((to, from, next) => {
-  let token = storage.get('token')
-  if (to.path === '/user' && token == null) {
-    Message.error('You need to Login !')
-    next({
-      path: '/login'
-    })
-  } else {
-    next()
-  }
-  // 路由守卫
-})
+// router.beforeEach((to, from, next) => {
+//   let token = storage.get('token')
+//   if (to.path === '/user' && token == null) {
+//     Message.error('You need to Login !')
+//     next({
+//       path: '/login'
+//     })
+//   } else {
+//     next()
+//   }
+//   // 路由守卫
+// })
 
 export default router
