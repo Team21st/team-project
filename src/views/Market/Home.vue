@@ -22,8 +22,29 @@
     </div>
     <el-row>
       <el-carousel indicator-position="outside" class="center">
-        <el-carousel-item v-for="item in 4" :key="item">
-          <h3>{{ item }}</h3>
+        <el-carousel-item>
+          <el-image
+            style="position: absolute;height: 100%"
+            :src="require('../../assets/images/carousel1.png')">
+          </el-image>
+        </el-carousel-item>
+        <el-carousel-item>
+          <el-image
+            style="position: absolute;height: 100%"
+            :src="require('../../assets/images/carousel2.png')">
+          </el-image>
+        </el-carousel-item>
+        <el-carousel-item>
+          <el-image
+            style="position: absolute;height: 100%"
+            :src="require('../../assets/images/carousel3.png')">
+          </el-image>
+        </el-carousel-item>
+        <el-carousel-item>
+          <el-image
+            style="position: absolute;height: 100%"
+            :src="require('../../assets/images/carousel4.png')">
+          </el-image>
         </el-carousel-item>
       </el-carousel>
     </el-row>
@@ -34,15 +55,14 @@
           <el-button type="text">more >>></el-button>
         </div>
         <div style="display: flex;justify-content: space-around;flex-wrap: wrap">
-          <div v-for="(item,index) in 6"
+          <div v-for="(item,index) in bookList.slice(0,5)"
                :key="index"
                class="project">
             <el-image
-              style="height: 110px"
-              :src="item.imgUrl">
+              style="height: 110px;width: 80px"
+              :src="item.bookPicUrl">
             </el-image>
-            <h3></h3>
-            <p>$1</p>
+            <p>{{item.bookName}}</p>
           </div>
         </div>
       </div>
@@ -50,19 +70,18 @@
     <el-row>
       <div class="center list-project">
         <div class="list-head">
-          <h2>HOT BOOKS</h2>
+          <h2>HOT SELLERS</h2>
           <el-button type="text">more >>></el-button>
         </div>
         <div style="display: flex;justify-content: space-around;flex-wrap: wrap">
-          <div v-for="(item,index) in 6"
+          <div v-for="(item,index) in userList.slice(0,5)"
                :key="index"
                class="project">
             <el-image
-              style="height: 110px"
-              :src="item.imgUrl">
+              style="height: 110px;width: 80px"
+              :src="item.profileUrl">
             </el-image>
-            <h3></h3>
-            <p>$1</p>
+            <p>{{item.userName}}</p>
           </div>
         </div>
       </div>
@@ -71,22 +90,43 @@
 </template>
 
 <script>
+import {queryCommodities,queryBusiness} from "@/api/trade";
+
 export default {
   name: 'Home',
   data() {
     return {
-      bookList: [
-        {
-          imgUrl: '',
-          bookName: '',
-          intro: '',
-          linkList: []
-        }
-      ],
+      bookList:[],
+      showBookForm:{
+        imgUrl: '',
+        bookName: '',
+      },
       userList: [],
+      showUserForm:{
+        imgUrl: '',
+        userName: '',
+      }
     }
   },
-  components: {}
+  components: {},
+  mounted() {
+    this.showCommodities()
+    this.showSells()
+  },
+  methods:{
+    showCommodities() {
+      queryCommodities(this.showBookForm).then(res => {
+        console.log(res)
+        this.bookList = res.body.records
+      })
+    },
+    showSells(){
+      queryBusiness(this.showUserForm).then(res =>{
+        console.log(res)
+        this.userList = res.body.records
+      })
+    }
+  }
 }
 </script>
 

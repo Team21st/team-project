@@ -17,7 +17,9 @@
       </el-col>
       <el-col :span="18">
         <el-card style="margin-bottom: 20px">
-          个人信息
+        <!--          -->
+              个人信息
+        <!--          -->
         </el-card>
         <el-card>
           <info v-if="tags==='0'"/>
@@ -32,6 +34,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 import info from "@/components/UserCenter/info";
 import purchaseHistory from "@/components/UserCenter/purchaseHistory";
 import receiveOrder from "@/components/UserCenter/receiveOrder";
@@ -69,7 +72,8 @@ export default {
           label: 'My Selling Books',
           tag: "4"
         }
-      ]
+      ],
+      userInfo:'',
     }
   },
   methods: {

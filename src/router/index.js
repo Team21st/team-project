@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import storage from 'store'
 import {Message} from 'element-ui'
+import store from '../store/index'
 
 Vue.use(VueRouter)
 
@@ -102,6 +103,8 @@ router.beforeEach((to, from, next) => {
     next({
       path: '/login'
     })
+  } else if (store.state.userInfo.userRoot===0&&to.path.match(/^\/admin*/g)) {
+    Message.error('You are not admin!')
   } else {
     next()
   }
