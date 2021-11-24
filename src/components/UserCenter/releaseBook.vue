@@ -1,33 +1,35 @@
 <template>
   <div id="release-book">
-    <el-form>
-      <el-form-item></el-form-item>
-      <div style="display: flex">
-        <div>
-          <el-form-item></el-form-item>
-          <el-form-item></el-form-item>
-        </div>
-        <div>
-          <el-form-item></el-form-item>
-          <el-form-item></el-form-item>
-          <el-form-item></el-form-item>
-        </div>
-      </div>
-      <el-form-item></el-form-item>
-      <el-form-item></el-form-item>
-    </el-form>
+    <el-table :data="releaseList" border stripe>
+<!--      <el-table-column prop="username" label="姓名"> </el-table-column>-->
+
+    </el-table>
     <el-button type="primary">Release</el-button>
   </div>
 </template>
 
 <script>
+import {queryMyCommodity} from "@/api/user.js";
 export default {
   name: "userComm",
+  created() {
+    this.getQueryMyCommodity()
+  },
   data() {
     return {
-      releaseForm: {
-
+      releaseList:[],
+      queryInfo: {
+        queryPage: 1,
+        querySize: 1
       }
+    }
+  },
+  methods:{
+    getQueryMyCommodity(){
+      queryMyCommodity(this.queryInfo).then(res => {
+        console.log(res)
+        // this.releaseList = res.body.records
+      })
     }
   }
 }

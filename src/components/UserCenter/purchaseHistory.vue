@@ -55,9 +55,9 @@ export default {
           width: ''
         }
       ],
-      historyData: []
+      historyData: [],
     }
-  }
+  },
 }
 </script>
 
