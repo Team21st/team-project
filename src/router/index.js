@@ -95,6 +95,8 @@ VueRouter.prototype.push = function push(location) {
 
 router.beforeEach((to, from, next) => {
   let token = storage.get('token')
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
   if (to.path === '/user' && token == null) {
     Message.error('You need to Login !')
     next({

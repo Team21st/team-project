@@ -24,7 +24,10 @@
     <top-search/>
     <commodity-top-info :book-info="bookInfo"/>
     <div style="height: 100px;text-align: right;margin-top: 20px">
-      <el-button style="margin-left: 10px">Add to Your Cart</el-button>
+      <el-button style="margin-left: 10px"
+                 @click="addToShoppingCart">
+        Add to Your Cart
+      </el-button>
       <el-input-number
         style="margin-left: 10px"
         v-model="orderForm.num"
@@ -67,6 +70,7 @@ import commodityTopInfo from "@/components/Market/commodityTopInfo";
 import otherSeller from "@/components/Market/otherSeller";
 import {placeOrder, addShoppingCart, queryCommodities} from "@/api/trade";
 import {Message} from "element-ui";
+import {mapGetters} from "vuex/dist/vuex.mjs";
 
 export default {
   name: "Commodity",
@@ -95,7 +99,7 @@ export default {
   methods: {
     getCommodityInfo() {
       let id = this.$route.query.id
-      if(id.length===0){
+      if (id.length === 0) {
         this.$message.error('error id')
         this.$router.back()
       }
@@ -119,23 +123,36 @@ export default {
     },
     queryOtherInfo() {
       queryCommodities({
-        querySize:5,
+        querySize: 5,
         sellerName: this.bookInfo.sellerName
       }).then(res => {
         this.similarList = res.body.records
       })
       queryCommodities({
-        querySize:5,
+        querySize: 5,
         bookName: this.bookInfo.bookName
       }).then(res => {
         this.otherSeller = res.body.records
       })
+    },
+    addToShoppingCart() {
+      if(this.userInfo){
+        addShoppingCart({
+          bookNo: this.bookInfo.bookNo,
+          num: this.orderForm.num
+        })
+      }else {
+        this.$message.error('You need to login!')
+      }
     }
   },
   components: {
     topSearch,
     commodityTopInfo,
     otherSeller
+  },
+  computed: {
+    ...mapGetters(['userInfo'])
   }
 }
 </script>
@@ -143,6 +160,7 @@ export default {
 <style scoped lang="less">
 #commodity {
   padding-bottom: 100px;
+
   .sub-box {
     margin: 20px 0;
 

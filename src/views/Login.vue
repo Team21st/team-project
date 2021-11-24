@@ -89,9 +89,9 @@ export default {
       if (await judgeUserName({
         userName: value
       }).then(res => {
-        return res.body === 'user name pass'
+        return res.head.respCode = 0
       })) {
-        callback(new Error('用户名已被使用'))
+        callback(new Error('Already be used'))
       } else {
         callback()
       }
