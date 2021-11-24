@@ -87,6 +87,8 @@ export default {
     receiveOrder,
     releaseBook,
     userSellBook
+  }, computed: {
+    ...mapGetters(['userInfo'])
   }
 }
 </script>

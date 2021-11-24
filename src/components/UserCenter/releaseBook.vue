@@ -1,34 +1,50 @@
 <template>
   <div id="release-book">
-    <el-table :data="releaseList" border stripe>
-<!--      <el-table-column prop="username" label="姓名"> </el-table-column>-->
-
-    </el-table>
-    <el-button type="primary">Release</el-button>
+    <h2>Release Book</h2>
+      <el-form label-width="80px" :model="releaseList">
+        <el-form-item label="bookName">
+          <el-input v-model="releaseList.bookName"></el-input>
+        </el-form-item>
+        <el-form-item label="bookPrice">
+          <el-input v-model="releaseList.bookPrice"></el-input>
+        </el-form-item>
+        <el-form-item label="bookStock">
+          <el-input v-model="releaseList.bookStock"></el-input>
+        </el-form-item>
+        <el-form-item label="bookTag">
+          <el-input v-model="releaseList.bookTag"></el-input>
+        </el-form-item>
+        <el-form-item label="newOldDegree">
+          <el-input v-model="releaseList.newOldDegree"></el-input>
+        </el-form-item>
+        <el-form-item label="bookDesc">
+          <el-input v-model="releaseList.bookDesc"></el-input>
+        </el-form-item>
+      </el-form>
+    <el-button type="primary" @click="bookOnShelve">Release</el-button>
   </div>
 </template>
 
 <script>
-import {queryMyCommodity} from "@/api/user.js";
+import {bookOnShelve} from "@/api/trade";
 export default {
   name: "userComm",
-  created() {
-    this.getQueryMyCommodity()
-  },
   data() {
     return {
-      releaseList:[],
-      queryInfo: {
-        queryPage: 1,
-        querySize: 1
-      }
+      releaseList:{
+        bookName:'',
+        bookPrice:'',
+        bookStock:'',
+        bookTag:'',
+        newOldDegree:'',
+        bookDesc:'',
+      },
     }
   },
   methods:{
-    getQueryMyCommodity(){
-      queryMyCommodity(this.queryInfo).then(res => {
+    bookOnShelve(){
+      bookOnShelve().then(res =>{
         console.log(res)
-        // this.releaseList = res.body.records
       })
     }
   }
@@ -36,7 +52,15 @@ export default {
 </script>
 
 <style scoped lang="less">
-#receive-order {
+#release-book{
+  width: 600px;
+  margin: auto;
+  text-align: center;
+  h2{
+    margin-bottom: 20px;
+  }
+  .el-form-item{
 
+  }
 }
 </style>

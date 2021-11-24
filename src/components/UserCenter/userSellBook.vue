@@ -3,7 +3,7 @@
     <el-table
       style="margin-top: 10px"
       load="loading"
-      data="">
+      :data="SellingData">
       <el-table-column
         v-for="item in tableList"
         :key="item.label"
@@ -27,11 +27,50 @@
 </template>
 
 <script>
+import {queryMyCommodity} from "@/api/user";
 export default {
   name: "userSellBook",
+  mounted() {
+    this.queryMyCommodity()
+  },
   data() {
     return {
-      tableList: []
+      tableList: [
+        {
+          label: 'Picture',
+          prop: '',
+          width: ''
+        }, {
+          label: 'Name',
+          prop: '',
+          width: ''
+        }, {
+          label: 'Tag',
+          prop: '',
+          width: ''
+        }, {
+          label: 'Selled',
+          prop: '',
+          width: ''
+        }, {
+          label: 'Remain',
+          prop: '',
+          width: ''
+        },{
+          label: 'State',
+          prop: '',
+          width: ''
+        },
+      ],
+      queryInfo:{},
+      SellingData: [],
+    }
+  },
+  methods:{
+    queryMyCommodity(){
+      queryMyCommodity(this.queryInfo).then(res =>{
+        console.log(res)
+      })
     }
   }
 }

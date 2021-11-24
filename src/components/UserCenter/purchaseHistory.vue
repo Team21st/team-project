@@ -4,7 +4,7 @@
     <el-table
       style="margin-top: 10px"
       load="loading"
-      data="">
+      :data="historyData">
       <el-table-column
         v-for="item in tableList"
         :key="item.label"
@@ -28,8 +28,13 @@
 </template>
 
 <script>
+import {queryOrder} from "@/api/trade";
+
 export default {
   name: "purchaseHistory",
+  mounted() {
+    this.showPurchase()
+  },
   data() {
     return {
       tableList: [
@@ -55,9 +60,20 @@ export default {
           width: ''
         }
       ],
+      queryInfo:{
+        operatorRole:0,
+      },
       historyData: [],
     }
   },
+  methods:{
+    showPurchase(){
+      queryOrder(this.queryInfo).then(res => {
+        console.log(res)
+        // this.bookList = res.body.records
+      })
+    }
+  }
 }
 </script>
 

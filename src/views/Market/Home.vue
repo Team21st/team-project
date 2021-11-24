@@ -176,12 +176,11 @@ export default {
     text-decoration: none;
 
   }
-
   .project {
     height: 150px;
     flex: 1 1 auto;
     text-align: center;
-    cursor: none;
+    cursor: pointer;
     padding: 10px;
   }
 }

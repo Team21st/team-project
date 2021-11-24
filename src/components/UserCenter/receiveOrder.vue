@@ -1,9 +1,10 @@
 <template>
   <div id="receive-order">
+    <h2>Order Received</h2>
     <el-table
       style="margin-top: 10px"
       load="loading"
-      data="">
+      :data="orderData">
       <el-table-column
         v-for="item in tableList"
         :key="item.label"
@@ -27,11 +28,45 @@
 </template>
 
 <script>
+import {queryOrder} from "@/api/trade";
 export default {
   name: "receiveOrder.vue",
+  mounted() {
+    this.showOrder()
+  },
   data() {
     return {
-      tableList: []
+      tableList: [
+        {
+          label: 'Commodity',
+          prop: '',
+          width: ''
+        }, {
+          label: 'Quantity',
+          prop: '',
+          width: ''
+        }, {
+          label: 'Order Date',
+          prop: '',
+          width: ''
+        }, {
+          label: 'State',
+          prop: '',
+          width: ''
+        },
+      ],
+      queryInfo:{
+        operatorRole:1,
+      },
+      orderData: [],
+    }
+  },
+  methods:{
+    showOrder(){
+      queryOrder(this.queryInfo).then(res => {
+        console.log(res)
+        // this.bookList = res.body.records
+      })
     }
   }
 }
