@@ -13,7 +13,9 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     token: '',
-    userInfo: '',
+    userInfo: {
+      userName: ''
+    },
   },
   mutations: {
     setToken: (state, token) => {
@@ -34,8 +36,8 @@ const store = new Vuex.Store({
           storage.set('token', res.body.token)
           commit('setToken', res.body.token)
           commit('setUserInfo', res.body.userBean)
-          Message.success(`Welcome ${res.body.userBean.userRoot === 0 ? getters.userName() : 'Admin'}`)
-          resolve()
+          Message.success(`Welcome ${res.body.userBean.userRoot === 0 ? res.body.userBean.userName : 'Admin'}`)
+          resolve(res)
         }).catch(error => {
           reject(error)
         })

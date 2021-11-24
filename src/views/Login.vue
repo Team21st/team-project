@@ -140,8 +140,8 @@ export default {
     login() {
       this.$refs['loginForm'].validate((valid) => {
         if (valid) {
-          this.Login(this.loginForm).then(() => {
-            if (this.userInfo.userRoot === 0) {
+          this.Login(this.loginForm).then(res => {
+            if (res.body.userBean.userRoot === 0) {
               this.$router.push('/')
             } else {
               this.$router.push('/admin/dashboard')
