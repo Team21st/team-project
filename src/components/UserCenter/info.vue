@@ -14,8 +14,8 @@
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="changePassword">确 定</el-button>
+        <el-button @click="dialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="changePassword">Apply</el-button>
       </span>
     </el-dialog>
 
@@ -35,22 +35,27 @@
       <el-form-item label="userRealName">
         <el-input v-model="userInfo.userRealName"></el-input>
       </el-form-item>
-      <el-form-item label="Resume">
+      <el-form-item label="userInfo">
         <el-input v-model="userInfo.userInfo"></el-input>
       </el-form-item>
     </el-form>
     <div>
-      <el-button type="primary">Edit Info</el-button>
+      <el-button type="primary" @click="changeUserInfo">Edit Info</el-button>
       <el-button type="danger" @click="dialogVisible=true">Change Password</el-button>
     </div>
   </div>
 </template>
 
 <script>
-import {changeUserPassword} from "@/api/user";
+import {changeUserPassword,queryUserPrivateInfo,updateUserPrivateInfo} from "@/api/user";
+
+import {mapGetters} from "vuex";
 
 export default {
   name: "info",
+  mounted() {
+    this.showUserInfo()
+  },
   data() {
     return {
       userInfo: {
@@ -74,7 +79,26 @@ export default {
         this.$message.success(res.body)
         this.dialogVisible = false
       })
+    },
+    showUserInfo(){
+      queryUserPrivateInfo({}).then(res => {
+        console.log(res)
+        this.userInfo.birthday=res.body.birthday
+        this.userInfo.college=res.body.college
+        this.userInfo.sno=res.body.sno
+        this.userInfo.userInfo=res.body.userInfo
+        this.userInfo.userName=res.body.userName
+        this.userInfo.userRealName=res.body.userRealName
+      })
+    },
+    changeUserInfo(){
+      updateUserPrivateInfo(this.userInfo).then(res=>{
+        // console.log(res)
+        this.$message.success(res.body)
+      })
     }
+  }, computed: {
+    ...mapGetters(['userInfo'])
   }
 }
 </script>

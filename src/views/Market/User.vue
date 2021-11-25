@@ -18,7 +18,7 @@
       <el-col :span="18">
         <el-card style="margin-bottom: 20px">
         <!--          -->
-              个人信息
+              {{userInfo.userName}}
         <!--          -->
         </el-card>
         <el-card>
@@ -73,7 +73,6 @@ export default {
           tag: "4"
         }
       ],
-      userInfo:'',
     }
   },
   methods: {
