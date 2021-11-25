@@ -60,9 +60,10 @@
                class="project">
             <el-image
               style="height: 110px;width: 80px"
+              @click="toCommodity(item.bookNo)"
               :src="item.bookPicUrl">
             </el-image>
-            <p>{{item.bookName}}</p>
+            <p @click="toCommodity(item.bookNo)">{{item.bookName}}</p>
           </div>
         </div>
       </div>
@@ -124,6 +125,14 @@ export default {
       queryBusiness(this.showUserForm).then(res =>{
         console.log(res)
         this.userList = res.body.records
+      })
+    },
+    toCommodity(id) {
+      this.$router.push({
+        path: '/commodity',
+        query: {
+          id: id
+        }
       })
     }
   }
