@@ -1,17 +1,17 @@
 <template>
   <div class="container">
     <el-table :data="userList" style="width: 100%">
-      <el-table-column prop="userBean.userName" label="用户名"></el-table-column>
-      <el-table-column prop="userBean.userEmail" label="邮箱"></el-table-column>
+      <el-table-column prop="userBean.userName" label="UserName"></el-table-column>
+      <el-table-column prop="userBean.userEmail" label="Email"></el-table-column>
       <el-table-column prop="userBean.userNo" label="UUID" width="250"></el-table-column>
-      <el-table-column prop="userBean.userRealName" label="真实姓名"></el-table-column>
-      <el-table-column prop="userBean.cardName" label="户名"></el-table-column>
-      <el-table-column prop="userBean.cardNo" label="银行卡号"></el-table-column>
-      <el-table-column prop="userBean.money" label="提现金额"></el-table-column>
-      <el-table-column label="账号操作">
-        <el-button type="success">批准
+      <el-table-column prop="userBean.userRealName" label="UserRealName"></el-table-column>
+      <el-table-column prop="userBean.cardName" label="cardName"></el-table-column>
+      <el-table-column prop="userBean.cardNo" label="cardNo"></el-table-column>
+      <el-table-column prop="userBean.money" label="money"></el-table-column>
+      <el-table-column label="Operation">
+        <el-button type="success">Approved
         </el-button>
-        <el-button type="danger">驳回
+        <el-button type="danger">Rejected
         </el-button>
       </el-table-column>
     </el-table>

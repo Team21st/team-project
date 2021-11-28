@@ -3,40 +3,40 @@
   <div class="container">
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>用户信息</span>
+        <span>UserInfo</span>
       </div>
       <div>
         <el-form :inline="true" label-width="120px">
           <el-row>
             <el-col :span="8">
-              <el-form-item label="用户名 :">
+              <el-form-item label="UserName :">
                 <span>{{ this.user.userName }}</span>
               </el-form-item>
             </el-col>
             <el-col :span="8">
-              <el-form-item label="真实姓名 :">
+              <el-form-item label="UserRealName :">
                 <span>{{ this.user.userRealName }}</span>
               </el-form-item>
             </el-col>
             <el-col :span="8">
-              <el-form-item label="院系 :">
+              <el-form-item label="College :">
                 <span>{{ this.user.userRealName }}</span>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="8">
-              <el-form-item label="用户UUID :">
+              <el-form-item label="UUID :">
                 <span>{{ this.user.userNo }}</span>
               </el-form-item>
             </el-col>
             <el-col :span="8">
-              <el-form-item label="身份 :">
-                <span>系统管理员</span>
+              <el-form-item label="Identity :">
+                <span>System Administrator</span>
               </el-form-item>
             </el-col>
             <el-col :span="8">
-              <el-form-item label="邮箱 :">
+              <el-form-item label="Email :">
                 <span>{{ this.user.userEmail }}</span>
               </el-form-item>
             </el-col>
@@ -49,8 +49,8 @@
         <el-col :span="6">
           <el-card class="box-card" @click="table">
             <div slot="header" class="clearfix">
-              <span @click="table">用户总数</span>
-              <el-tooltip style="float:right" content="用户总数" placement="top-start">
+              <span @click="table">Total users</span>
+              <el-tooltip style="float:right" content="Total users" placement="top-start">
                 <i class="el-icon-user" style="color: #6190e8"></i>
               </el-tooltip>
             </div>
@@ -60,8 +60,8 @@
         <el-col :span="6">
           <el-card class="box-card">
             <div slot="header" class="clearfix">
-              <span @click="organizeTable">订单总数</span>
-              <el-tooltip style="float:right" content="订单总数" placement="top-start">
+              <span @click="organizeTable">Total orders</span>
+              <el-tooltip style="float:right" content="Total orders" placement="top-start">
                 <i class="el-icon-document" style="color: #6190e8"></i>
               </el-tooltip>
             </div>
@@ -71,8 +71,8 @@
         <el-col :span="6">
           <el-card class="box-card">
             <div slot="header" class="clearfix">
-              <span @click="active">商品总数</span>
-              <el-tooltip style="float:right" content="商品总数" placement="top-start">
+              <span @click="active">Total goods</span>
+              <el-tooltip style="float:right" content="Total goods" placement="top-start">
                 <i class="el-icon-view" style="color: #6190e8"></i>
               </el-tooltip>
             </div>
@@ -84,8 +84,8 @@
         <el-col :span="6">
           <el-card class="box-card">
             <div slot="header" class="clearfix">
-              <span @click="funding">总销售额</span>
-              <el-tooltip style="float:right" content="总销售额" placement="top-start">
+              <span @click="funding">Total sales</span>
+              <el-tooltip style="float:right" content="Total sales" placement="top-start">
                 <i class="el-icon-s-promotion" style="color: #6190e8"></i>
               </el-tooltip>
             </div>
@@ -99,13 +99,13 @@
       <el-row :gutter="15">
         <el-col :span="12">
           <el-card>
-            每日登入统计
+            Daily login statistics
             <ve-line :data="chartData1" :settings="chartSettings"></ve-line>
           </el-card>
         </el-col>
         <el-col :span="12">
           <el-card>
-            各分区商品数
+            Different types of goods
             <ve-histogram :data="chartData2" :settings="histogramSettings"></ve-histogram>
           </el-card>
         </el-col>

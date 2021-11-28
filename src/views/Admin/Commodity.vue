@@ -29,7 +29,7 @@
           </el-form>
         </template>
       </el-table-column>
-      <el-table-column label="图片" width="120">
+      <el-table-column label="Picture" width="120">
         <template slot-scope="scope">
           <el-image :src="scope.row.bookPicUrl" fit='cover'
                     style="width: 70px;height: 70px">
@@ -43,23 +43,23 @@
       <el-table-column prop="auditStatus" label="Audit Status" sortable>
         <div slot-scope="scope">
           <div v-if="scope.row.auditStatus == null || scope.row.auditStatus===0">
-            <el-tag type="primary">待审核</el-tag>
+            <el-tag type="primary">Check Pending</el-tag>
           </div>
           <div v-else-if="scope.row.auditStatus === 1">
-            <el-tag type="success">审核通过</el-tag>
+            <el-tag type="success">Approved</el-tag>
           </div>
           <div v-else>
-            <el-tag type="danger">被驳回</el-tag>
+            <el-tag type="danger">Rejected</el-tag>
           </div>
         </div>
       </el-table-column>
-      <el-table-column label="商品操作" width="300">
+      <el-table-column label="Operation" width="300">
         <template slot-scope="scope">
           <el-button type="success" @click="setBookAudit(1,scope.row.bookNo)" size="small"
-                     v-if="scope.row.auditStatus==null||scope.row.auditStatus===2">通过
+                     v-if="scope.row.auditStatus==null||scope.row.auditStatus===2">Pass
           </el-button>
           <el-button type="danger" @click="setBookAudit(2,scope.row.bookNo)" size="small"
-                     v-if="scope.row.auditStatus==null||scope.row.auditStatus===1">驳回
+                     v-if="scope.row.auditStatus==null||scope.row.auditStatus===1">Rejected
           </el-button>
         </template>
       </el-table-column>

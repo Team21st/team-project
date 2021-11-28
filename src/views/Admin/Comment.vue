@@ -1,12 +1,12 @@
 <template>
   <div class="container">
     <el-table :data="userList" style="width: 100%">
-      <el-table-column prop="userBean.userName" label="用户名"></el-table-column>
-      <el-table-column prop="userBean.userEmail" label="邮箱"></el-table-column>
+      <el-table-column prop="userBean.userName" label="User"></el-table-column>
+      <el-table-column prop="userBean.userEmail" label="Email"></el-table-column>
       <el-table-column prop="userBean.userNo" label="UUID" width="180"></el-table-column>
       <el-table-column prop="userBean.comment" label="Content" width="400"></el-table-column>
       <el-table-column prop="userBean.reason" label="Reason" width="300"></el-table-column>
-      <el-table-column label="账号操作">
+      <el-table-column label="Operation">
         <el-button type="danger">Ban
         </el-button>
         <el-button type="info">Delete
