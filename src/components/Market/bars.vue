@@ -40,10 +40,6 @@ export default {
           path: '/'
         },
         {
-          label: 'Authentication',
-          path: '/authentication'
-        },
-        {
           label: 'Cart',
           path: '/cart'
         },

@@ -14,13 +14,13 @@
               </el-form-item>
             </el-col>
             <el-col :span="8">
-              <el-form-item label="UserRealName :">
-                <span>{{ this.user.userRealName }}</span>
+              <el-form-item label="college :">
+                <span>{{ this.user.college ? this.user.college : 'unkonwn' }}</span>
               </el-form-item>
             </el-col>
             <el-col :span="8">
-              <el-form-item label="College :">
-                <span>{{ this.user.userRealName }}</span>
+              <el-form-item label="Root:">
+                <span>{{ this.user.userRoot }}</span>
               </el-form-item>
             </el-col>
           </el-row>
@@ -54,7 +54,7 @@
                 <i class="el-icon-user" style="color: #6190e8"></i>
               </el-tooltip>
             </div>
-            <div style="font-size: 30px;color: #515a6e">593人</div>
+            <div style="font-size: 30px;color: #515a6e">{{ this.user.totalUserNum }}</div>
           </el-card>
         </el-col>
         <el-col :span="6">
@@ -65,7 +65,7 @@
                 <i class="el-icon-document" style="color: #6190e8"></i>
               </el-tooltip>
             </div>
-            <div style="font-size: 30px;color: #515a6e">108</div>
+            <div style="font-size: 30px;color: #515a6e">{{ this.user.totalOrderNum }}</div>
           </el-card>
         </el-col>
         <el-col :span="6">
@@ -77,7 +77,7 @@
               </el-tooltip>
             </div>
             <div>
-              <div style="font-size: 30px;color: #515a6e">28</div>
+              <div style="font-size: 30px;color: #515a6e">{{ this.user.totalBookNum }}</div>
             </div>
           </el-card>
         </el-col>
@@ -89,7 +89,7 @@
                 <i class="el-icon-s-promotion" style="color: #6190e8"></i>
               </el-tooltip>
             </div>
-            <div style="color: #6190e8;font-size: 30px">￥8821.92</div>
+            <div style="color: #6190e8;font-size: 30px">{{ this.user.totalSales }}</div>
           </el-card>
         </el-col>
       </el-row>
@@ -115,11 +115,13 @@
 </template>
 
 <script>
+import {administratorHomepageDisplay} from "@/api/admin";
+
 export default {
   name: "Dashboard",
   data() {
     return {
-      user: '',
+      user: {},
       chartSettings: {
         metrics: ["登入人数"],
         dimension: ["日期"],
@@ -157,10 +159,19 @@ export default {
       },
     };
   },
+  created() {
+  },
   mounted() {
     this.user = this.$store.state.user
+    this.getData()
   },
   methods: {
+    getData() {
+      administratorHomepageDisplay({}).then(res => {
+        console.log(res)
+        this.user = res.body
+      })
+    },
     funding() {
       this.$router.push("/money")
     },

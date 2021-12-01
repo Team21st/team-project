@@ -33,7 +33,7 @@ export function updateUserPrivateInfo(params) {
     requestServer: 'StoreService',
     url: '/user/updateUserPrivateInfo',
     method: 'post',
-    data: params
+    data: params,
   })
 }
 
