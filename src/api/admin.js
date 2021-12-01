@@ -53,3 +53,12 @@ export function auditBooks(params) {
     data: params
   })
 }
+
+export function administratorHomepageDisplay(params) {
+  return request({
+    requestServer: 'StoreService',
+    url: '/manage/administratorHomepageDisplay',
+    method: 'post',
+    data: params
+  })
+}
