@@ -18,7 +18,7 @@
       <el-col :span="18">
         <el-card style="margin-bottom: 20px">
         <!--          -->
-              {{userInfo.userName}}
+              <h4>Username:{{userInfo.userName}}</h4>
         <!--          -->
         </el-card>
         <el-card>
