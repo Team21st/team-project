@@ -44,19 +44,19 @@ export default {
           width: ''
         }, {
           label: 'Commodity',
-          prop: '',
+          prop: 'bookName',
           width: ''
         }, {
           label: 'Price',
-          prop: '',
+          prop: 'price',
           width: ''
         }, {
           label: 'Quantity',
-          prop: '',
+          prop: 'num',
           width: ''
         }, {
           label: 'State',
-          prop: '',
+          prop: 'orderStatus',
           width: ''
         }
       ],
@@ -70,7 +70,7 @@ export default {
     showPurchase(){
       queryOrder(this.queryInfo).then(res => {
         console.log(res)
-        // this.bookList = res.body.records
+        this.historyData = res.body.records
       })
     }
   }

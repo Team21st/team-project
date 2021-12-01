@@ -39,19 +39,19 @@ export default {
       tableList: [
         {
           label: 'Commodity',
-          prop: '',
+          prop: 'bookName',
           width: ''
         }, {
           label: 'Quantity',
-          prop: '',
+          prop: 'num',
           width: ''
         }, {
           label: 'Order Date',
-          prop: '',
+          prop: 'createTime',
           width: ''
         }, {
           label: 'State',
-          prop: '',
+          prop: 'orderStatus',
           width: ''
         },
       ],
@@ -65,7 +65,7 @@ export default {
     showOrder(){
       queryOrder(this.queryInfo).then(res => {
         console.log(res)
-        // this.bookList = res.body.records
+        this.orderData = res.body.records
       })
     }
   }

@@ -24,7 +24,7 @@
       <el-carousel indicator-position="outside" class="center">
         <el-carousel-item>
           <el-image
-            style="position: absolute;height: 100%"
+            style="position: absolute;height: 400px"
             :src="require('../../assets/images/carousel1.png')">
           </el-image>
         </el-carousel-item>
@@ -164,6 +164,9 @@ export default {
         width: 40%;
       }
     }
+  }
+  .el-carousel{
+    width: 800px;
   }
 }
 

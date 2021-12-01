@@ -9,6 +9,7 @@
           :on-remove="handleRemove"
           :before-remove="beforeRemove"
           multiple
+          auto-upload="false"
           :limit="4"
           :on-exceed="handleExceed"
           :file-list="releaseList.file">

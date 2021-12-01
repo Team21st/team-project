@@ -42,11 +42,11 @@ export default {
           width: ''
         }, {
           label: 'Name',
-          prop: '',
+          prop: 'bookName',
           width: ''
         }, {
           label: 'Tag',
-          prop: '',
+          prop: 'bookTag',
           width: ''
         }, {
           label: 'Selled',
@@ -70,6 +70,7 @@ export default {
     queryMyCommodity(){
       queryMyCommodity(this.queryInfo).then(res =>{
         console.log(res)
+        this.SellingData=res.body.records
       })
     }
   }
