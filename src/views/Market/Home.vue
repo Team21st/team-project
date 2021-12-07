@@ -61,7 +61,7 @@
             <el-image
               style="height: 110px;width: 80px"
               @click="toCommodity(item.bookNo)"
-              :src="item.bookPicUrl">
+              :src="item.picUrlBackList[0]">
             </el-image>
             <p @click="toCommodity(item.bookNo)">{{item.bookName}}</p>
           </div>

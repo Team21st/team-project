@@ -27,7 +27,8 @@
 </template>
 
 <script>
-import {queryMyCommodity} from "@/api/user";
+import {mapGetters} from 'vuex'
+import {queryCommodities} from "@/api/user";
 export default {
   name: "userSellBook",
   mounted() {
@@ -49,30 +50,33 @@ export default {
           prop: 'bookTag',
           width: ''
         }, {
-          label: 'Selled',
-          prop: '',
+          label: 'Price',
+          prop: 'truePrice',
           width: ''
         }, {
           label: 'Remain',
-          prop: '',
+          prop: 'bookStock',
           width: ''
         },{
-          label: 'State',
-          prop: '',
+          label: 'NewOldDegree',
+          prop: 'newOldDegree',
           width: ''
         },
       ],
-      queryInfo:{},
+      queryInfo:{
+        sellerNo:''
+      },
       SellingData: [],
     }
   },
   methods:{
     queryMyCommodity(){
-      queryMyCommodity(this.queryInfo).then(res =>{
+      queryCommodities(this.queryInfo).then(res =>{
         console.log(res)
-        this.SellingData=res.body.records
       })
     }
+  },computed: {
+    ...mapGetters(['userInfo'])
   }
 }
 </script>

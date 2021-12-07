@@ -18,7 +18,11 @@
       <el-col :span="18">
         <el-card style="margin-bottom: 20px">
         <!--          -->
-              <h4>Username:{{userInfo.userName}}</h4>
+            <el-image
+            style="width: 100px; height: 100px; float: left;margin-bottom: 15px"
+            :src="userInfo.profileUrl"
+            :fit="fit"></el-image>
+            <h4 style="display:inline-block;margin-left: 10px;margin-top: 20px">Username:{{userInfo.userName}}</h4>
         <!--          -->
         </el-card>
         <el-card>
@@ -46,6 +50,7 @@ export default {
   data() {
     return {
       tags: 0,
+      ImgUrl:'',
       tagsList: [
         {
           icon: 'el-icon-user-solid',
