@@ -22,11 +22,11 @@
         <!--          -->
         </el-card>
         <el-card>
-          <info v-if="tags==='0'"/>
-          <purchase-history v-else-if="tags==='1'"/>
+          <purchase-history v-if="tags==='1'"/>
           <receive-order v-else-if="tags==='2'"/>
           <release-book v-else-if="tags==='3'"/>
-          <user-sell-book v-else/>
+          <user-sell-book v-else-if="tags==='4'"/>
+          <info v-else/>
         </el-card>
       </el-col>
     </el-row>
