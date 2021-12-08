@@ -5,6 +5,7 @@
       style="margin-top: 10px"
       load="loading"
       :data="historyData">
+      <el-table-column prop="createTime" label="Date" :formatter="date"></el-table-column>
       <el-table-column
         v-for="item in tableList"
         :key="item.label"
@@ -12,17 +13,36 @@
         :width="item.width"
         :prop="item.prop">
       </el-table-column>
-      <el-table-column
-        label="Operation">
-        <template slot-scope="scope">
-          <el-button v-if="scope.row.status" type="primary">
 
-          </el-button>
-          <el-button v-if="scope.row.status" type="danger">
+<!--      <el-table-column-->
+<!--        label="Operation">-->
+<!--        <template slot-scope="scope">-->
+<!--          <el-button v-if="scope.row.status" type="primary">-->
 
-          </el-button>
+<!--          </el-button>-->
+<!--          <el-button v-if="scope.row.status" type="danger">-->
+
+<!--          </el-button>-->
+<!--        </template>-->
+<!--        -->
+<!--      </el-table-column>-->
+      <el-table-column label="Operation" width="100px">
+        <template>
+          <!-- 编辑按钮 -->
+<!--          <el-button-->
+<!--            type="warning"-->
+<!--            icon="el-icon-setting"-->
+<!--            size="mini"-->
+<!--          ></el-button>-->
+          <!-- 删除按钮 -->
+          <el-button
+            type="danger"
+            icon="el-icon-delete"
+            size="mini"
+          ></el-button>
         </template>
       </el-table-column>
+
     </el-table>
   </div>
 </template>
@@ -39,10 +59,6 @@ export default {
     return {
       tableList: [
         {
-          label: 'Date',
-          prop: '',
-          width: ''
-        }, {
           label: 'Commodity',
           prop: 'bookName',
           width: ''
@@ -72,6 +88,9 @@ export default {
         console.log(res)
         this.historyData = res.body.records
       })
+    },
+    date(row){
+      return row.createTime.slice(0,10)+' '+row.createTime.slice(11,19)
     }
   }
 }

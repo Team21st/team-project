@@ -21,10 +21,10 @@
       </div>
     </div>
     <el-row>
-      <el-carousel indicator-position="outside" class="center">
+      <el-carousel indicator-position="outside" class="center" height="400px">
         <el-carousel-item>
           <el-image
-            style="position: absolute;height: 400px"
+            style="position: absolute;height: 100%"
             :src="require('../../assets/images/carousel1.png')">
           </el-image>
         </el-carousel-item>
@@ -61,7 +61,7 @@
             <el-image
               style="height: 110px;width: 80px"
               @click="toCommodity(item.bookNo)"
-              :src="item.bookPicUrl">
+              :src="item.picUrlBackList[0]">
             </el-image>
             <p @click="toCommodity(item.bookNo)">{{item.bookName}}</p>
           </div>
@@ -166,7 +166,7 @@ export default {
     }
   }
   .el-carousel{
-    width: 800px;
+    width: 1000px;
   }
 }
 

@@ -18,15 +18,20 @@
       <el-col :span="18">
         <el-card style="margin-bottom: 20px">
         <!--          -->
-              <h4>Username:{{userInfo.userName}}</h4>
+            <el-image
+            style="width: 100px; height: 100px; float: left;margin-bottom: 15px"
+            :src="userInfo.profileUrl"
+            :fit="fit"></el-image>
+            <h4 style="display:inline-block;margin-left: 10px;margin-top: 10px">Username:{{userInfo.userName}}</h4>
+            <h4 style="display:inline-block;margin-left: 10px;margin-top: 10px">UserNo:{{userInfo.userNo}}</h4>
         <!--          -->
         </el-card>
         <el-card>
-          <info v-if="tags==='0'"/>
-          <purchase-history v-else-if="tags==='1'"/>
+          <purchase-history v-if="tags==='1'"/>
           <receive-order v-else-if="tags==='2'"/>
           <release-book v-else-if="tags==='3'"/>
-          <user-sell-book v-else/>
+          <user-sell-book v-else-if="tags==='4'"/>
+          <info v-else/>
         </el-card>
       </el-col>
     </el-row>
@@ -46,6 +51,7 @@ export default {
   data() {
     return {
       tags: 0,
+      ImgUrl:'',
       tagsList: [
         {
           icon: 'el-icon-user-solid',

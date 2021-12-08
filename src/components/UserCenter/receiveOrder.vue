@@ -5,6 +5,7 @@
       style="margin-top: 10px"
       load="loading"
       :data="orderData">
+      <el-table-column prop="createTime" label="Order Date" :formatter="date"></el-table-column>
       <el-table-column
         v-for="item in tableList"
         :key="item.label"
@@ -12,15 +13,20 @@
         :width="item.width"
         :prop="item.prop">
       </el-table-column>
-      <el-table-column
-        label="Operation">
-        <template slot-scope="scope">
-          <el-button v-if="scope.row.status" type="primary">
-
-          </el-button>
-          <el-button v-if="scope.row.status" type="danger">
-
-          </el-button>
+      <el-table-column label="Operation" width="100px">
+        <template>
+          <!-- 编辑按钮 -->
+<!--          <el-button-->
+<!--            type="warning"-->
+<!--            icon="el-icon-setting"-->
+<!--            size="mini"-->
+<!--          ></el-button>-->
+          <!-- 删除按钮 -->
+          <el-button
+            type="danger"
+            icon="el-icon-delete"
+            size="mini"
+          ></el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -46,10 +52,6 @@ export default {
           prop: 'num',
           width: ''
         }, {
-          label: 'Order Date',
-          prop: 'createTime',
-          width: ''
-        }, {
           label: 'State',
           prop: 'orderStatus',
           width: ''
@@ -67,7 +69,10 @@ export default {
         console.log(res)
         this.orderData = res.body.records
       })
-    }
+    },
+    date(row){
+      return row.createTime.slice(0,10)+' '+row.createTime.slice(11,19)
+    },
   }
 }
 </script>
