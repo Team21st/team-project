@@ -7,16 +7,15 @@
         <el-avatar
           style="margin: 10px"
           :size="60"
-          src="item.bookPicUrl"
+          :src="item.userPic?item.userPic:'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'"
           @error="true">
-          user
         </el-avatar>
         <h2 style="line-height: 80px">{{ item.sellerName }}</h2>
       </div>
       <div style="display: flex">
         <el-image
           @click="toCommodity(item.bookNo)"
-          :src="item.bookPicUrl"
+          :src="item.picUrlBackList[0]"
           style="width: 200px;height: 200px;margin: 10px;cursor: pointer">
         </el-image>
         <div style="margin: 20px;position: relative">
@@ -29,7 +28,7 @@
           </div>
           <div style="position: absolute;bottom: 10px">
             <h3>Assess:{{ item.newOldDegree }}%</h3>
-            <h3>Price:$ {{ item.bookPrice }}</h3>
+            <h3>Price:{{ item.truePrice }}</h3>
           </div>
         </div>
       </div>
@@ -41,7 +40,7 @@
 export default {
   name: "commonList",
   props: {
-    commodityList: Object
+    commodityList: Array
   },
   data() {
     return {

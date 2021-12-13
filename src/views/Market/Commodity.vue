@@ -35,11 +35,18 @@
         :min="1" :max="bookInfo.bookStock"
         label="sss">
       </el-input-number>
-      <el-button style="margin-left: 10px" type="primary" size="max" @click="dialogVisible = true">Buy Now</el-button>
+      <el-button style="margin-left: 10px"
+                 type="primary" size="max"
+                 :disabled="!userInfo"
+                 @click="dialogVisible = true">
+        Buy Now
+      </el-button>
     </div>
     <div class="sub-box">
       <h2>Content introduction ···</h2>
-      <div>asdasdasdasdqeqwxdasdqwe2e</div>
+      <p>
+        Because unlikely a person will read a subject all of the books, but also depending on its important and not important to have intensive reading and coarse, choose which, don't choose which should according to individual need and trade-offs, which requires a sharing platform, let us know before you read the contents of a book, gain and loss, read the opinion of the book, etc., In order to be able to better choose to read and purposefully seek out certain books.
+      </p>
     </div>
     <div class="sub-box">
       <h2>View other sellers ···</h2>
@@ -107,6 +114,7 @@ export default {
         bookNo: id
       }).then(res => {
         this.bookInfo = res.body.records[0]
+        console.log(this.bookInfo)
       })
     },
     handleChange(value) {

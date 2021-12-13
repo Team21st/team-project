@@ -42,24 +42,16 @@
       <el-table-column prop="createUser" label="Create User" width="180" sortable></el-table-column>
       <el-table-column prop="auditStatus" label="Audit Status" sortable>
         <div slot-scope="scope">
-          <div v-if="scope.row.auditStatus == null || scope.row.auditStatus===0">
-            <el-tag type="primary">Check Pending</el-tag>
-          </div>
-          <div v-else-if="scope.row.auditStatus === 1">
-            <el-tag type="success">Approved</el-tag>
-          </div>
-          <div v-else>
-            <el-tag type="danger">Rejected</el-tag>
-          </div>
+          {{scope.row.auditStatus}}
         </div>
       </el-table-column>
-      <el-table-column label="Operation" width="300">
+      <el-table-column label="Operation" width="120" prop="bookNo">
         <template slot-scope="scope">
           <el-button type="success" @click="setBookAudit(1,scope.row.bookNo)" size="small"
-                     v-if="scope.row.auditStatus==null||scope.row.auditStatus===2">Pass
+                     v-if="scope.row.auditStatus!=='通过'">Pass
           </el-button>
           <el-button type="danger" @click="setBookAudit(2,scope.row.bookNo)" size="small"
-                     v-if="scope.row.auditStatus==null||scope.row.auditStatus===1">Rejected
+                     v-else>Rejected
           </el-button>
         </template>
       </el-table-column>
@@ -111,6 +103,7 @@ export default {
         this.queryForm.queryPage = res.body.current
         this.queryForm.querySize = res.body.size
         this.queryForm.total = res.body.total
+        console.log(this.commList)
       })
     },
     rTime: function (date) {

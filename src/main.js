@@ -11,6 +11,8 @@ import 'element-ui/lib/theme-chalk/display.css';
 
 import config from '@/config'
 
+import VCharts from 'v-charts'
+
 Vue.prototype.$config = config
 Vue.prototype.$message = Message
 
@@ -18,6 +20,7 @@ import './assets/CSS/index.less'
 import './assets/CSS/theme/index.css'
 
 Vue.use(ElementUI)
+Vue.use(VCharts)
 Vue.use(animate)
 
 Vue.config.productionTip = false

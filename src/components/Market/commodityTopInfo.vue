@@ -3,7 +3,7 @@
     <el-col :span="6">
       <el-image
         fit="fill"
-        :src="bookInfo.bookPicUrl"
+        :src="bookInfo.picUrlBackList[0]"
         style="">
       </el-image>
     </el-col>
