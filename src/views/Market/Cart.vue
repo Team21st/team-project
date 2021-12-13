@@ -1,6 +1,6 @@
 <template>
   <div id="cart">
-    <market-head head="Cart"></market-head>
+    <top-search/>
     <div>
       <div>
         Select All
@@ -11,8 +11,9 @@
 </template>
 
 <script>
-import marketHead from "@/components/Market/marketHead";
+import topSearch from "@/components/Market/topSearch";
 import cartCounter from "@/utils/cartCounter";
+import {queryShoppingCart} from "@/api/trade"
 
 export default {
   name: "Cart",
@@ -21,7 +22,15 @@ export default {
       cartList: []
     }
   },
+  mounted() {
+    this.getCart()
+  },
   methods: {
+    getCart(){
+      queryShoppingCart({}).then(res=>{
+        console.log(res)
+      })
+    },
     selectAll() {
 
     },
@@ -30,7 +39,7 @@ export default {
     }
   },
   components: {
-    marketHead
+    topSearch
   },
   watch: {
     cartList() {

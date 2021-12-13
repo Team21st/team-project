@@ -4,7 +4,7 @@
       <el-image
         fit="fill"
         :src="bookInfo.picUrlBackList[0]"
-        style="">
+        style="width: 90%;height: 100%">
       </el-image>
     </el-col>
     <el-col :span="12" class="info">
@@ -20,7 +20,6 @@
       </div>
     </el-col>
     <el-col :span="6">
-      卖家信息
     </el-col>
   </el-row>
 </template>

@@ -20,11 +20,8 @@
             <el-form-item label="Releaser:">
               <span>{{ props.row.createUser }}</span>
             </el-form-item>
-            <el-form-item label="Reviewer:">
-              <span>{{ props.row.auditor }}</span>
-            </el-form-item>
             <el-form-item label="Audit time:">
-              <span>{{ props.row.auditTime }}</span>
+              <span>{{ new Date() }}</span>
             </el-form-item>
           </el-form>
         </template>

@@ -5,7 +5,6 @@
       style="width: 90%;"
       class="inline-input"
       v-model="search"
-      :fetch-suggestions="querySearch"
       placeholder="The moon and six pence"
       @select="handleSelect"
     >
@@ -23,12 +22,6 @@ export default {
     }
   },
   methods: {
-    querySearch(queryString, cb) {
-      let restaurants = this.restaurants;
-      let results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants;
-      // 调用 callback 返回建议列表的数据
-      cb(results);
-    },
     handleSelect(item) {
       console.log(item);
     },

@@ -148,6 +148,8 @@ export default {
         addShoppingCart({
           bookNo: this.bookInfo.bookNo,
           num: this.orderForm.num
+        }).then(res=>{
+          this.$message.success(res.body)
         })
       }else {
         this.$message.error('You need to login!')
