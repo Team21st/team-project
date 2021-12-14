@@ -123,7 +123,7 @@ export function queryOrder(params) {
 export function deleteOrderRecord(params) {
   return request({
     requestServer: 'StoreService',
-    url: '/trade/queryOrder',
+    url: '/trade/deleteOrderRecord',
     method: 'post',
     data: params
   })
