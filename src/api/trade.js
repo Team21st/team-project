@@ -9,10 +9,10 @@ export function bookOnShelve(params) {
   })
 }
 
-export function deleteBookOnShelve(params) {
+export function bookOffShelve(params) {
   return request({
     requestServer: 'StoreService',
-    url: '/trade/deleteBookOnShelve',
+    url: '/trade/bookOffShelve',
     method: 'post',
     data: params
   })
@@ -118,4 +118,17 @@ export function queryOrder(params) {
     data: params
   })
 }
+
+//删除订单
+export function deleteOrderRecord(params) {
+  return request({
+    requestServer: 'StoreService',
+    url: '/trade/deleteOrderRecord',
+    method: 'post',
+    data: params
+  })
+}
+
+
+
 

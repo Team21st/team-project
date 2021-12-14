@@ -69,7 +69,7 @@
       </div>
     </el-row>
     <el-row>
-      <div class="center list-project">
+      <div class="center list-project list-seller">
         <div class="list-head">
           <h2>HOT SELLERS</h2>
           <el-button type="text">more >>></el-button>

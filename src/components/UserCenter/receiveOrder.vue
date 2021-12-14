@@ -13,19 +13,20 @@
         :width="item.width"
         :prop="item.prop">
       </el-table-column>
-      <el-table-column label="Operation" width="100px">
-        <template>
+      <el-table-column label="Operation" width="120px">
+        <template slot-scope="scope">
           <!-- 编辑按钮 -->
-<!--          <el-button-->
-<!--            type="warning"-->
-<!--            icon="el-icon-setting"-->
-<!--            size="mini"-->
-<!--          ></el-button>-->
+          <el-button
+            type="warning"
+            icon="el-icon-setting"
+            size="mini"
+          ></el-button>
           <!-- 删除按钮 -->
           <el-button
             type="danger"
             icon="el-icon-delete"
             size="mini"
+            @click="de(scope.row.orderNo)"
           ></el-button>
         </template>
       </el-table-column>
@@ -34,7 +35,8 @@
 </template>
 
 <script>
-import {queryOrder} from "@/api/trade";
+import {queryOrder,deleteOrderRecord} from "@/api/trade";
+
 export default {
   name: "receiveOrder.vue",
   mounted() {
@@ -61,6 +63,10 @@ export default {
         operatorRole:1,
       },
       orderData: [],
+      deleteBookInfo:{
+        orderNo:'',
+        operatorRole:1,
+      },
     }
   },
   methods:{
@@ -73,6 +79,12 @@ export default {
     date(row){
       return row.createTime.slice(0,10)+' '+row.createTime.slice(11,19)
     },
+    de(OrderNo){
+      this.deleteBookInfo.orderNo=OrderNo
+      deleteOrderRecord(this.deleteBookInfo).then(res =>{
+        console.log(res)
+      })
+    }
   }
 }
 </script>

@@ -26,19 +26,20 @@
 <!--        </template>-->
 <!--        -->
 <!--      </el-table-column>-->
-      <el-table-column label="Operation" width="100px">
-        <template>
-          <!-- 编辑按钮 -->
-<!--          <el-button-->
-<!--            type="warning"-->
-<!--            icon="el-icon-setting"-->
-<!--            size="mini"-->
-<!--          ></el-button>-->
+      <el-table-column label="Operation" width="120px">
+        <template slot-scope="scope">
+          <!--编辑按钮 -->
+          <el-button
+            type="warning"
+            icon="el-icon-setting"
+            size="mini"
+          ></el-button>
           <!-- 删除按钮 -->
           <el-button
             type="danger"
             icon="el-icon-delete"
             size="mini"
+            @click="de(scope.row.orderNo)"
           ></el-button>
         </template>
       </el-table-column>
@@ -48,7 +49,7 @@
 </template>
 
 <script>
-import {queryOrder} from "@/api/trade";
+import {queryOrder,deleteOrderRecord} from "@/api/trade";
 
 export default {
   name: "purchaseHistory",
@@ -80,6 +81,10 @@ export default {
         operatorRole:0,
       },
       historyData: [],
+      deleteBookInfo:{
+        orderNo:'',
+        operatorRole:0,
+      },
     }
   },
   methods:{
@@ -91,6 +96,12 @@ export default {
     },
     date(row){
       return row.createTime.slice(0,10)+' '+row.createTime.slice(11,19)
+    },
+    de(OrderNo){
+      this.deleteBookInfo.orderNo=OrderNo
+      deleteOrderRecord(this.deleteBookInfo).then(res =>{
+        console.log(res)
+      })
     }
   }
 }

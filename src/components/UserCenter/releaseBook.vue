@@ -3,18 +3,13 @@
     <h2>Release Book</h2>
       <el-form label-width="120px" :model="releaseList" :rules="rules" size="large">
         <el-upload
-          class="upload-demo"
-          action="https://jsonplaceholder.typicode.com/posts/"
-          :on-preview="handlePreview"
-          :on-remove="handleRemove"
-          :before-remove="beforeRemove"
-          multiple
-          auto-upload="false"
-          :limit="4"
-          :on-exceed="handleExceed"
-          :file-list="releaseList.file">
-          <el-button size="middle" type="primary">upload</el-button>
-          <div slot="tip" class="el-upload__tip">only upload jpg/png files，and no more than 500kb</div>
+          class="avatar-uploader"
+          action=""
+          :auto-upload="false"
+          :on-change="uploadImg"
+          :show-file-list="false">
+          <img v-if="imgUrl" :src="imgUrl" class="avatar">
+          <i v-else class="el-icon-plus avatar-uploader-icon"></i>
         </el-upload>
         <el-form-item label="bookName"  prop="bookName">
           <el-input v-model="releaseList.bookName"></el-input>
@@ -63,7 +58,7 @@ export default {
         bookTag:'',
         newOldDegree:'',
         bookDesc:'',
-        file:[]
+        file:[],
       },
       rules:{
         bookName:[
@@ -88,7 +83,7 @@ export default {
           { required: true, message: 'Please input a book description', trigger: 'blur'},
         ],
       },
-      fileList: [],
+      imgUrl:''
     }
   },
   methods:{
@@ -98,17 +93,11 @@ export default {
         this.$message.success("successfully released")
       })
     },
-    handleRemove(file, fileList) {
-      console.log(file, fileList);
-    },
-    handlePreview(file) {
-      console.log(file);
-    },
-    handleExceed(files, fileList) {
-      this.$message.warning(`limited 4 files，already chose ${files.length} files，total ${files.length + fileList.length} files`);
-    },
-    beforeRemove(file, fileList) {
-      return this.$confirm(`remove ${ file.name }？`);
+    uploadImg(file) {
+      let img = new FormData()
+      console.log(file)
+      img.append('file', file.raw)
+      this.releaseList.file.push(img)
     }
   }
 }
