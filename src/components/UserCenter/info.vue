@@ -103,9 +103,6 @@ export default {
         this.showUserInfo()
       })
     },
-    handleAvatarSuccess(res, file) {
-      this.imageUrl = URL.createObjectURL(file.raw);
-    },
     uploadImg(file) {
       let img = new FormData()
       console.log(file)
