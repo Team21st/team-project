@@ -23,7 +23,7 @@
             :src="userInfo.profileUrl"
             :fit="fit"></el-image>
             <h4 style="display:inline-block;margin-left: 10px;margin-top: 10px">Username:{{userInfo.userName}}</h4>
-            <h4 style="display:inline-block;margin-left: 10px;margin-top: 10px">UserNo:{{userInfo.userNo}}</h4>
+<!--            <h4 style="display:inline-block;margin-left: 10px;margin-top: 10px">UserNo:{{userInfo.userNo}}</h4>-->
         <!--          -->
         </el-card>
         <el-card>

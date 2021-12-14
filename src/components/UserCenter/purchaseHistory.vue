@@ -26,14 +26,14 @@
 <!--        </template>-->
 <!--        -->
 <!--      </el-table-column>-->
-      <el-table-column label="Operation" width="100px">
+      <el-table-column label="Operation" width="120px">
         <template>
-          <!-- 编辑按钮 -->
-<!--          <el-button-->
-<!--            type="warning"-->
-<!--            icon="el-icon-setting"-->
-<!--            size="mini"-->
-<!--          ></el-button>-->
+          <!--编辑按钮 -->
+          <el-button
+            type="warning"
+            icon="el-icon-setting"
+            size="mini"
+          ></el-button>
           <!-- 删除按钮 -->
           <el-button
             type="danger"
