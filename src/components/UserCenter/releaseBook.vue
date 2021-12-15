@@ -58,7 +58,7 @@ export default {
         bookTag:'',
         newOldDegree:'',
         bookDesc:'',
-        file:[],
+        form:new FormData()
       },
       rules:{
         bookName:[
@@ -88,16 +88,23 @@ export default {
   },
   methods:{
     bookOnShelve(){
-      bookOnShelve(this.releaseList).then(res =>{
+      let form = this.form
+      form.append('bookName',this.bookName)
+      form.append('bookPrice',this.bookPrice)
+      form.append('bookStock',this.bookStock)
+      form.append('bookTag',this.bookTag)
+      form.append('newOldDegree',this.newOldDegree)
+      form.append('bookDesc',this.bookDesc)
+      console.log(form)
+      bookOnShelve(form).then(res =>{
         console.log(res)
         this.$message.success("successfully released")
       })
     },
     uploadImg(file) {
-      let img = new FormData()
+      // this.form = new FormData()
       console.log(file)
-      img.append('file', file.raw)
-      this.releaseList.file.push(img)
+      this.form.append('file', file.raw)
     }
   }
 }

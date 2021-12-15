@@ -179,7 +179,7 @@ export default {
       this.deleteBookInfo.bookNo=bookNo
       bookOffShelve(this.deleteBookInfo).then(res =>{
         console.log(res)
-        queryMyCommodity();
+        this.queryMyCommodity();
       })
     },
     change(res){
@@ -188,6 +188,7 @@ export default {
     },
     editBookOnShelve(){
       editBookOnShelve(this.editBook).then(res =>{
+        this.dialogVisible=false
         console.log(res)
       })
     }
