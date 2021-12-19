@@ -49,6 +49,8 @@ or
 npm run build
 ```
 
+Then the generated /dist file is the build's completed front-end project for deployment.
+
 ### Lints and fixes files
 
 ```
