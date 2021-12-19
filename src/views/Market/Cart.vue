@@ -38,9 +38,9 @@
               </div>
             </div>
           </div>
-          <el-button @click="buyAll">
-            Buy All
-          </el-button>
+<!--          <el-button @click="buyAll" v-if="index!=1">-->
+<!--            Buy All-->
+<!--          </el-button>-->
         </el-card>
       </div>
     </div>
@@ -71,7 +71,7 @@ export default {
   methods: {
     getCart() {
       queryShoppingCart({}).then(res => {
-        this.cartList = res.body
+        this.cartList = res.body.cartList
         console.log(res)
       })
     },

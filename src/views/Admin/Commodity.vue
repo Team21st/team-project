@@ -28,7 +28,7 @@
       </el-table-column>
       <el-table-column label="Picture" width="120">
         <template slot-scope="scope">
-          <el-image :src="scope.row.bookPicUrl" fit='cover'
+          <el-image :src="scope.row.picList[0]" fit='cover'
                     style="width: 70px;height: 70px">
           </el-image>
         </template>

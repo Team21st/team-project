@@ -15,7 +15,7 @@
         <div class="right-block">
         </div>
         <el-image
-          style="position: absolute;width: 500px;left: 700px;top: 60px"
+          style="position: absolute;width: 500px;left: 950px;top: 60px"
           :src="require('../../assets/people.png')">
         </el-image>
       </div>
