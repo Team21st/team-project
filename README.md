@@ -7,7 +7,7 @@ Code by Yihui Shi, Yichen Hu
 [Online Preview](http://team.yihuiblog.top/#/login)
 > Development and deployment based on Tencent Cloud Serverless
 
-The static deployment file is in the /dist file and requires a build directive.
+The static deployment file is in the ./dist file and requires a build directive.
 
 You also can get a live preview of our project through our Serverless deployment web page.
 
@@ -49,7 +49,7 @@ or
 npm run build
 ```
 
-Then the generated /dist file is the build's completed front-end project for deployment.
+Then the generated ./dist file is the build's completed front-end project for deployment.
 
 ### Lints and fixes files
 
