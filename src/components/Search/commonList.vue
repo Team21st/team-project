@@ -7,7 +7,7 @@
         <el-avatar
           style="margin: 10px"
           :size="60"
-          :src="item.userPic?item.userPic:'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'"
+          :src="item.sellerPic?item.sellerPic:'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'"
           @error="true">
         </el-avatar>
         <h2 style="line-height: 80px">{{ item.sellerName }}</h2>

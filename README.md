@@ -2,14 +2,14 @@
 
 FuZhou University MIEC Team Project
 
-By Yihui Shi, Yichen Hu
+Code by Yihui Shi, Yichen Hu
 
 [Online Preview](http://team.yihuiblog.top/#/login)
 > Development and deployment based on Tencent Cloud Serverless
 
+The static deployment file is in the /dist file and requires a build directive.
 
-
-You can get a live preview of our project through our Serverless deployment web page.
+You also can get a live preview of our project through our Serverless deployment web page.
 
 ##  Intro
 
@@ -29,18 +29,24 @@ The front end of book city is based on single page Web application development. 
 
 ```
 yarn install
+or
+npm install
 ```
 
 ### Compiles and hot-reloads for development
 
 ```
 yarn serve
+or
+npm run serve
 ```
 
 ### Compiles and minifies for production
 
 ```
 yarn build
+or
+npm run build
 ```
 
 ### Lints and fixes files
